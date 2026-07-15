@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Columbus PantryMap — Steven Needham</title>
+<style>
+  :root{--ink:#1f2428;--muted:#6b7280;--accent:#0e7c66;--bg:#faf9f6;--line:#e7e3da}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  nav{padding:28px 0}
+  a{color:var(--accent);text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
+  h1{font-size:30px;letter-spacing:-.02em;margin-bottom:10px}
+  p.lede{color:var(--muted);font-size:16px;max-width:640px;margin-bottom:18px}
+  .links{display:flex;gap:16px;font-size:14.5px;margin-bottom:26px}
+  .frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.06);margin-bottom:26px}
+  iframe{display:block;width:100%;height:70vh;min-height:480px;border:0}
+  .about{padding-bottom:70px;font-size:15px;max-width:680px}
+  .about h2{font-size:17px;margin:18px 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="../index.html">← All projects</a></nav>
+  <h1>Columbus PantryMap</h1>
+  <p class="lede">An interactive map of ~90 mutual-aid food locations across Central Ohio — little free pantries, blessing boxes, and community fridges. Take what you need, leave what you can.</p>
+  <div class="links">
+    <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank">Open full-screen ↗</a>
+    <a href="https://github.com/steveneedham/columbus-pantry-map" target="_blank">Source on GitHub ↗</a>
+  </div>
+  <div class="frame">
+    <iframe src="https://steveneedham.github.io/columbus-pantry-map/" title="Columbus PantryMap" loading="lazy"></iframe>
+  </div>
+  <div class="about">
+    <h2>Why</h2>
+    <p>Inspired by the University of Washington's <a href="https://www.washington.edu/news/2026/05/08/little-free-pantry-micropantry-community-fridge-pilot-app/" target="_blank">PantryMap pilot</a>, which mapped Seattle's micropantry network and found it moves an estimated 4 million pounds of food a year. Columbus has a similar grassroots network, but it was scattered across three separate maps — this project brings them together.</p>
+    <h2>How</h2>
+    <p>Location data compiled from the Mini Pantry Movement map, the Columbus Blessing Boxes Project, and the Bexley Freedge, deduplicated across networks. Built as a single-file HTML app with Leaflet and OpenStreetMap — no backend, no build step.</p>
+    <h2>Features</h2>
+    <p>Category filters, name and neighborhood search, "near me" geolocation, and per-location popups with turn-by-turn directions and links to each source network.</p>
+  </div>
+</div>
+</body>
+</html>

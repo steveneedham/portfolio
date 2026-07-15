@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steven Needham — Projects</title>
+<style>
+  :root{--ink:#1f2428;--muted:#6b7280;--accent:#0e7c66;--bg:#faf9f6;--card:#fff;--line:#e7e3da}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  header{padding:72px 0 40px}
+  header h1{font-size:34px;letter-spacing:-.02em}
+  header p{color:var(--muted);font-size:17px;margin-top:8px;max-width:560px}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:24px 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-bottom:80px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .15s,transform .15s}
+  .card:hover{box-shadow:0 6px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
+  .card .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+  .card h3{font-size:19px;letter-spacing:-.01em}
+  .card p{font-size:14px;color:var(--muted);flex:1}
+  .links{display:flex;gap:14px;font-size:14px}
+  a{color:var(--accent);text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
+  footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Steven Needham</h1>
+    <p>Projects at the intersection of maps, mobility, and community data in Columbus, Ohio.</p>
+  </header>
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Civic tech · Maps</span>
+      <h3>Columbus PantryMap</h3>
+      <p>Interactive map of ~90 mutual-aid food locations across Central Ohio — little free pantries, blessing boxes, and community fridges — with category filters, search, and geolocation. Inspired by UW's PantryMap pilot in Seattle.</p>
+      <div class="links">
+        <a href="projects/columbus-pantry-map.html">View project</a>
+        <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank">Live map</a>
+        <a href="https://github.com/steveneedham/columbus-pantry-map" target="_blank">Code</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="tag">Mobility</span>
+      <h3>Community Mobility Hubs</h3>
+      <p>Exploring shared mobility hub locations and access across Columbus neighborhoods.</p>
+      <div class="links">
+        <a href="https://github.com/steveneedham/community-mobility-hubs" target="_blank">Code</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    © 2026 Steven Needham · <a href="https://github.com/steveneedham" target="_blank">GitHub</a>
+  </footer>
+</div>
+</body>
+</html>
