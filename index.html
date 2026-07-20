@@ -3,395 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steven Needham — Operations & Systems</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Steven Needham — Projects</title>
 <style>
-  :root{
-    --ink:#14171C;
-    --panel:#1B1F27;
-    --panel-line:#282E38;
-    --amber:#E8A33D;
-    --amber-dim:#7A5B2C;
-    --teal:#4FD1C5;
-    --teal-dim:#2C6A64;
-    --text:#EDEAE2;
-    --muted:#8B93A1;
-    --muted-dim:#5B6270;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--ink);
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  ::selection{background:var(--amber); color:var(--ink);}
-  a{color:var(--teal); text-decoration:none;}
-  a:hover{color:var(--amber);}
-  .eyebrow{
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.72rem;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--muted);
-  }
-  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em;}
-
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    display:flex; justify-content:space-between; align-items:center;
-    padding:1.4rem clamp(1.5rem, 5vw, 4rem);
-    backdrop-filter:blur(10px);
-    background:rgba(20,23,28,0.72);
-    border-bottom:1px solid rgba(255,255,255,0.06);
-  }
-  .nav-name{font-family:'Fraunces', serif; font-size:1.05rem; font-weight:500; color:var(--text);}
-  .nav-links{display:flex; gap:1.8rem; font-family:'JetBrains Mono', monospace; font-size:0.75rem;}
-  .nav-links a{color:var(--muted); text-decoration:none; transition:color .2s;}
-  .nav-links a:hover{color:var(--text);}
-
-  .hero{
-    min-height:100svh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding:8rem clamp(1.5rem, 8vw, 6rem) 4rem;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:'';
-    position:absolute;
-    top:0; left:0; right:0; bottom:0;
-    background:rgba(20,23,28,0.5);
-    z-index:1;
-    pointer-events:none;
-  }
-  .hero video{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0.3;
-    z-index:0;
-  }
-  .hero > *{position:relative; z-index:2;}
-  .hero-eyebrow{margin-bottom:1.6rem;}
-  .hero h1{
-    font-size:clamp(2.1rem, 5.4vw, 4.1rem);
-    max-width:15ch;
-    line-height:1.12;
-  }
-  .hero h1 em{
-    font-style:italic; color:var(--amber);
-  }
-  .hero-sub{
-    margin-top:1.8rem;
-    max-width:52ch;
-    color:var(--muted);
-    font-size:1.05rem;
-  }
-  .hero-meta{
-    margin-top:2.6rem;
-    display:flex; gap:2.5rem; flex-wrap:wrap;
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.78rem;
-    color:var(--muted-dim);
-  }
-  .hero-meta strong{color:var(--text); display:block; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.3rem; color:var(--muted);}
-
-  .junction{
-    position:relative;
-    height:140px;
-    margin:0 clamp(1.5rem, 8vw, 6rem);
-  }
-  .junction svg{width:100%; height:100%; display:block;}
-
-  .legend{
-    display:flex; gap:2.5rem;
-    padding:0 clamp(1.5rem, 8vw, 6rem);
-    margin-bottom:0.5rem;
-  }
-  .legend-item{display:flex; align-items:center; gap:0.6rem; font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--muted);}
-  .dot{width:9px; height:9px; border-radius:50%;}
-  .dot.amber{background:var(--amber);}
-  .dot.teal{background:var(--teal);}
-
-  .tracks{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0 clamp(1.5rem, 5vw, 4rem);
-    padding:2rem clamp(1.5rem, 8vw, 6rem) 3rem;
-    position:relative;
-  }
-  .track{position:relative; padding-left:2.4rem;}
-  .track::before{
-    content:'';
-    position:absolute; left:6px; top:6px; bottom:6px;
-    width:2px;
-  }
-  .track.ops::before{background:linear-gradient(var(--amber-dim), var(--amber));}
-  .track.sys::before{background:linear-gradient(var(--teal-dim), var(--teal));}
-  .track-label{
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
-    margin-bottom:2rem;
-  }
-  .track.ops .track-label{color:var(--amber);}
-  .track.sys .track-label{color:var(--teal);}
-
-  .stop{
-    position:relative;
-    margin-bottom:2.6rem;
-    padding-bottom:2.6rem;
-    border-bottom:1px solid var(--panel-line);
-    opacity:0; transform:translateY(14px);
-    transition:opacity .6s ease, transform .6s ease;
-  }
-  .stop.visible{opacity:1; transform:translateY(0);}
-  .stop:last-child{border-bottom:none;}
-  .stop::before{
-    content:'';
-    position:absolute; left:-2.4rem; top:0.35rem;
-    width:11px; height:11px; border-radius:50%;
-    background:var(--ink);
-    border:2px solid var(--muted-dim);
-  }
-  .track.ops .stop::before{border-color:var(--amber);}
-  .track.sys .stop::before{border-color:var(--teal);}
-  .stop h3{font-size:1.15rem; margin-bottom:0.55rem; font-weight:500;}
-  .stop p{color:var(--muted); font-size:0.94rem; max-width:44ch;}
-  .stop-tags{
-    display:flex; gap:0.5rem; flex-wrap:wrap;
-    margin-top:0.9rem;
-  }
-  .tag{
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.68rem;
-    color:var(--muted-dim);
-    border:1px solid var(--panel-line);
-    padding:0.22rem 0.55rem;
-    border-radius:3px;
-  }
-  .stop-link{display:inline-block; margin-top:0.9rem; font-family:'JetBrains Mono', monospace; font-size:0.78rem; text-decoration:none; border-bottom:1px solid;}
-  .track.ops .stop-link{color:var(--amber); border-color:var(--amber-dim);}
-  .track.sys .stop-link{color:var(--teal); border-color:var(--teal-dim);}
-
-  @media (max-width:760px){
-    .tracks{grid-template-columns:1fr; gap:3rem 0;}
-  }
-
-  .merge-line{
-    height:90px;
-    margin:0 clamp(1.5rem, 8vw, 6rem);
-  }
-  .merge-line svg{width:100%; height:100%; display:block;}
-
-  .about{
-    padding:2rem clamp(1.5rem, 8vw, 6rem) 7rem;
-    max-width:68ch;
-  }
-  .about .eyebrow{margin-bottom:1.2rem;}
-  .about h2{font-size:clamp(1.6rem, 3vw, 2.1rem); margin-bottom:1.4rem; line-height:1.25;}
-  .about p{color:var(--muted); margin-bottom:1.1rem; font-size:1rem;}
-  .about p strong{color:var(--text); font-weight:500;}
-
-  footer{
-    border-top:1px solid var(--panel-line);
-    padding:3.5rem clamp(1.5rem, 8vw, 6rem) 3rem;
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:2rem;
-  }
-  footer h2{font-size:clamp(1.5rem, 3vw, 2rem); max-width:16ch;}
-  .contact-links{display:flex; flex-direction:column; gap:0.6rem; font-family:'JetBrains Mono', monospace; font-size:0.85rem;}
-  .contact-links a{text-decoration:none; color:var(--muted); transition:color .2s; border-bottom:1px solid transparent;}
-  .contact-links a:hover{color:var(--amber); border-color:var(--amber);}
-  .foot-note{
-    width:100%;
-    margin-top:2.5rem;
-    padding-top:1.5rem;
-    border-top:1px solid var(--panel-line);
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.7rem;
-    color:var(--muted-dim);
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .stop{transition:none; opacity:1; transform:none;}
-  }
-
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--amber);
-    outline-offset:3px;
-  }
+  :root{--ink:#1f2428;--muted:#6b7280;--accent:#0e7c66;--bg:#faf9f6;--card:#fff;--line:#e7e3da}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  header{padding:72px 0 40px}
+  header h1{font-size:34px;letter-spacing:-.02em}
+  header p{color:var(--muted);font-size:17px;margin-top:8px;max-width:560px}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:24px 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding-bottom:80px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .15s,transform .15s}
+  .card:hover{box-shadow:0 6px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
+  .card .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+  .card h3{font-size:19px;letter-spacing:-.01em}
+  .card p{font-size:14px;color:var(--muted);flex:1}
+  .links{display:flex;gap:14px;font-size:14px}
+  a{color:var(--accent);text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
+  footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-name">Steven Needham</div>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="urban_.mp4" type="video/mp4">
-  </video>
-  <div class="hero-eyebrow eyebrow">Operations &amp; Systems — Columbus, OH</div>
-  <h1>I build environments — at work and in life — where people feel <em>safe, seen,</em> and able to move forward.</h1>
-  <p class="hero-sub">Field operations leadership meets hands-on systems work. Ten-plus years running people-heavy operations in micromobility, now building the dashboards, playbooks, and automation that make those operations legible.</p>
-  <div class="hero-meta">
-    <div><strong>Based</strong>Columbus, Ohio</div>
-    <div><strong>Focus</strong>Ops leadership · data systems · civic tech</div>
-    <div><strong>Open to</strong>Fractional ops consulting · analytics builds · SOP &amp; documentation work</div>
-  </div>
-</section>
-
-<div class="junction" aria-hidden="true">
-  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-    <path d="M 50 0 L 50 25 Q 50 40 25 50 L 25 100" stroke="#7A5B2C" stroke-width="0.6" fill="none"/>
-    <path d="M 50 0 L 50 25 Q 50 40 75 50 L 75 100" stroke="#2C6A64" stroke-width="0.6" fill="none"/>
-  </svg>
-</div>
-
-<div class="legend" id="work">
-  <div class="legend-item"><span class="dot amber"></span>Ops &amp; Leadership Line</div>
-  <div class="legend-item"><span class="dot teal"></span>Systems &amp; Tools Line</div>
-</div>
-
-<section class="tracks">
-  <div class="track ops">
-    <div class="track-label">Ops &amp; Leadership</div>
-
-    <div class="stop">
-      <h3>Large-event readiness playbooks</h3>
-      <p>Built the operational plan for a major citywide festival's multi-day fleet coverage, setting swap targets, staffing windows, and a park-specific deployment strategy from the ground up.</p>
-      <div class="stop-tags"><span class="tag">Event ops</span><span class="tag">Capacity planning</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Community mobility activations</h3>
-      <p>Planned and supported public-facing mobility experiences over seven years, connecting thousands of people with shared transportation through community events, sporting events, civic partnerships, and rider education — including Life After Cars, Open Streets Columbus, Bike to Work Day, scooter valet programs, and experiential marketing campaigns.</p>
-      <div class="stop-tags"><span class="tag">Community engagement</span><span class="tag">Event operations</span><span class="tag">Public partnerships</span><span class="tag">Experiential marketing</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Operator performance &amp; coaching system</h3>
-      <p>Designed a grading framework for a mixed contracted/direct workforce, identifying top performers for shift-lead development and flagging coaching conversations before they became retention problems.</p>
-      <div class="stop-tags"><span class="tag">Workforce development</span><span class="tag">People management</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Competitive market analysis</h3>
-      <p>Ran head-to-head service-quality comparisons against a competing operator to sharpen where the team's coverage strategy needed to adjust.</p>
-      <div class="stop-tags"><span class="tag">Market analysis</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Process change management</h3>
-      <p>Authored and rolled out a formal process change notice restructuring how work orders and tasks flowed through the team, with a communication plan for a distributed workforce.</p>
-      <div class="stop-tags"><span class="tag">SOP writing</span><span class="tag">Change management</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Internal comms &amp; team communication</h3>
-      <p>Wrote the team's recurring operational updates and safety communications — calm, transparent, and direct, especially when conditions on the ground were difficult.</p>
-      <div class="stop-tags"><span class="tag">Leadership comms</span></div>
-    </div>
-  </div>
-
-  <div class="track sys">
-    <div class="track-label">Systems &amp; Tools</div>
-
-    <div class="stop">
-      <h3>Live multi-fleet operations dashboard</h3>
-      <p>Built a browser-based dashboard pulling real-time public feeds from two competing mobility fleets alongside internal operational data — with anomaly detection, AI-generated briefings, and a live chat panel for the ops team.</p>
-      <div class="stop-tags"><span class="tag">React</span><span class="tag">Real-time data</span><span class="tag">Dashboarding</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Vehicle performance analytics</h3>
-      <p>Analyzed roughly six months and 20,000+ rides of fleet data to identify chronic underperforming vehicles and the neighborhoods driving the most demand, informing where to concentrate maintenance and deployment.</p>
-      <div class="stop-tags"><span class="tag">Data analysis</span><span class="tag">Fleet ops</span></div>
-    </div>
-
-    <div class="stop">
+<div class="wrap">
+  <header>
+    <h1>Steven Needham</h1>
+    <p>Projects at the intersection of maps, mobility, and community data in Columbus, Ohio.</p>
+  </header>
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Civic tech · Maps</span>
       <h3>Columbus PantryMap</h3>
-      <p>An interactive map of roughly 90 mutual-aid food locations across Central Ohio — little free pantries, blessing boxes, and community fridges — with category filters, search, and geolocation. Inspired by UW's PantryMap pilot in Seattle.</p>
-      <div class="stop-tags"><span class="tag">Civic tech</span><span class="tag">Maps</span><span class="tag">Leaflet</span></div>
-      <a class="stop-link" href="projects/columbus-pantry-map.html">View project →</a>
+      <p>Interactive map of ~90 mutual-aid food locations across Central Ohio — little free pantries, blessing boxes, and community fridges — with category filters, search, and geolocation. Inspired by UW's PantryMap pilot in Seattle.</p>
+      <div class="links">
+        <a href="projects/columbus-pantry-map.html">View project</a>
+        <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank">Live map</a>
+        <a href="https://github.com/steveneedham/columbus-pantry-map" target="_blank">Code</a>
+      </div>
     </div>
-
-    <div class="stop">
-      <h3>Knowledge-gap audit</h3>
-      <p>Ran a systematic audit of the team's documentation, surfacing a dozen undocumented operational blind spots and prioritizing which needed SOPs first.</p>
-      <div class="stop-tags"><span class="tag">Documentation</span><span class="tag">Process audit</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Cross-machine dev environment</h3>
-      <p>Set up a synced development environment across Mac and Windows for Python automation and scripting work, with a dotfiles repo to keep both machines consistent.</p>
-      <div class="stop-tags"><span class="tag">Python</span><span class="tag">Dev tooling</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Inbox &amp; signal filtering</h3>
-      <p>Rebuilt a personal inbox's filter and label system to cut newsletter noise and surface the handful of email types that actually needed same-day attention.</p>
-      <div class="stop-tags"><span class="tag">Automation</span></div>
-    </div>
-
-    <div class="stop">
-      <h3>Community mobility hubs</h3>
-      <p>A civic-tech project mapping out how transit, bike share, and micromobility can converge into real neighborhood hubs — built and published independently as part of ongoing transit advocacy work in Columbus. This site is that project, expanded into a full portfolio.</p>
-      <div class="stop-tags"><span class="tag">Civic tech</span><span class="tag">Transit advocacy</span></div>
+    <div class="card">
+      <span class="tag">Mobility</span>
+      <h3>Community Mobility Hubs</h3>
+      <p>Exploring shared mobility hub locations and access across Columbus neighborhoods.</p>
+      <div class="links">
+        <a href="https://github.com/steveneedham/community-mobility-hubs" target="_blank">Code</a>
+      </div>
     </div>
   </div>
-</section>
-
-<div class="merge-line" aria-hidden="true">
-  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-    <path d="M 25 0 L 25 50 Q 25 65 50 75 L 50 100" stroke="#7A5B2C" stroke-width="0.6" fill="none"/>
-    <path d="M 75 0 L 75 50 Q 75 65 50 75 L 50 100" stroke="#2C6A64" stroke-width="0.6" fill="none"/>
-  </svg>
+  <footer>
+    © 2026 Steven Needham · <a href="https://github.com/steveneedham" target="_blank">GitHub</a>
+  </footer>
 </div>
-
-<section class="about" id="about">
-  <div class="eyebrow">About</div>
-  <h2>Two ways of working, one underlying question: how do you make a system feel safe to move through?</h2>
-  <p>Steven spent the past several years leading field operations for a micromobility fleet in Columbus, Ohio — managing a mixed workforce of contracted and direct operators, running the analytics that told the story of a whole city's rideshare network, and building the SOPs that turned tribal knowledge into something a team could actually rely on.</p>
-  <p>He's now stepping into a more independent chapter: <strong>fractional operations consulting, dashboard and analytics builds, SOP and documentation work, Python automation, and civic tech</strong> through Columbus's transit advocacy community. The through-line is the same north star it's always been — building environments, digital or physical, where people feel safe, seen, and able to move forward.</p>
-</section>
-
-<footer id="contact">
-  <h2>Let's build something that moves people forward.</h2>
-  <div class="contact-links">
-    <a href="https://www.linkedin.com/in/steveneedham" target="_blank" rel="noopener">LinkedIn — /in/steveneedham</a>
-    <a href="https://www.instagram.com/steveneedham" target="_blank" rel="noopener">Instagram — @steveneedham</a>
-    <a href="https://github.com/steveneedham" target="_blank" rel="noopener">GitHub — steveneedham</a>
-  </div>
-  <div class="foot-note">Columbus, Ohio · Portfolio last updated July 2026</div>
-</footer>
-
-<script>
-  const stops = document.querySelectorAll('.stop');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.15});
-  stops.forEach(s => io.observe(s));
-</script>
-
 </body>
 </html>
