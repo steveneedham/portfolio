@@ -1,0 +1,8 @@
+/* Sourced live from Google Fonts — same CDN the original site links directly.
+   This @import (rather than locally-hosted binaries) mirrors how the source
+   repos themselves load type, and keeps the three families' full variable
+   ranges (Fraunces optical size + italic, Inter, JetBrains Mono) in sync
+   with Google's hosting. If you need offline/self-hosted fonts, download
+   the woff2 files from fonts.google.com and swap this @import for local
+   @font-face rules pointing at assets/fonts/. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');

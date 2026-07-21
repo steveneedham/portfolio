@@ -1,0 +1,27 @@
+:root{
+--space-page-x:clamp(1.5rem, 8vw, 6rem);
+--space-nav-x:clamp(1.5rem, 5vw, 4rem);
+--space-track-gap:clamp(1.5rem, 5vw, 4rem);
+--space-hero-top:8rem;
+--space-hero-bottom:4rem;
+--space-stop-gap:2.6rem;
+--space-section-gap:2rem;
+--space-xs:0.35rem;
+--space-sm:0.6rem;
+--space-md:0.9rem;
+--space-lg:1.4rem;
+--space-xl:2rem;
+--space-2xl:2.6rem;
+--space-3xl:3.5rem;
+--space-4xl:7rem;
+
+--radius-sm:3px;
+--radius-md:12px;
+
+--border-width:1px;
+--border-width-thick:2px;
+
+--motion-fast:0.2s ease; /* @kind other */
+--motion-slow:0.6s ease; /* @kind other */
+--blur-nav:10px;
+}

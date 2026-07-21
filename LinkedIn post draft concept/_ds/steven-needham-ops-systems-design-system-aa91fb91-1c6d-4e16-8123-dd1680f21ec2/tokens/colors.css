@@ -1,0 +1,38 @@
+:root{
+/* Dark surface (primary — homepage, portfolio shell) */
+--ink:#14171C;
+--panel:#1B1F27;
+--panel-line:#282E38;
+--amber:#E8A33D;
+--amber-dim:#7A5B2C;
+--teal:#4FD1C5;
+--teal-dim:#2C6A64;
+--text:#EDEAE2;
+--muted:#8B93A1;
+--muted-dim:#5B6270;
+
+/* Light surface (secondary — project detail pages) */
+--paper-bg:#faf9f6;
+--paper-ink:#1f2428;
+--paper-muted:#6b7280;
+--paper-accent:#0e7c66;
+--paper-line:#e7e3da;
+
+/* Semantic aliases */
+--surface-page:var(--ink);
+--surface-panel:var(--panel);
+--surface-paper:var(--paper-bg);
+--border-default:var(--panel-line);
+--border-paper:var(--paper-line);
+--text-primary:var(--text);
+--text-muted:var(--muted);
+--text-muted-dim:var(--muted-dim);
+--text-paper:var(--paper-ink);
+--text-paper-muted:var(--paper-muted);
+--accent-ops:var(--amber);
+--accent-ops-dim:var(--amber-dim);
+--accent-sys:var(--teal);
+--accent-sys-dim:var(--teal-dim);
+--accent-paper:var(--paper-accent);
+--focus-ring:var(--amber);
+}

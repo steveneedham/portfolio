@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/styles.css">
+  <script src="_ds/steven-needham-ops-systems-design-system-aa91fb91-1c6d-4e16-8123-dd1680f21ec2/_ds_bundle.js"></script>
+  <style>
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1080" height="1350" hint-size="100%,100%" data-uneditable="">
+
+<section data-label="Cover" data-speaker-notes="Full-bleed cover: the photo itself, title over a scrim." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif;">
+  <img src="assets/arch-scooters.png" alt="Row of orange scooters lined beneath the Union Station Arch at dusk, Columbus" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,23,28,0.94) 0%, rgba(20,23,28,0.55) 22%, rgba(20,23,28,0.05) 42%, rgba(20,23,28,0) 62%);"></div>
+  <div style="position:absolute; left:0; right:0; top:0; padding:76px 72px 0; display:flex; flex-direction:column; gap:20px;">
+    <img src="assets/logo.svg" alt="Steven Needham logo" style="width:36px; height:36px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.18em; text-transform:uppercase; color:#E8A33D;">A photograph, as one chapter closes</div>
+    <div style="font-family:'Fraunces',serif; font-weight:500; font-size:56px; line-height:1.12; color:#EDEAE2;">Seven years.<br><span style="font-style:italic; color:#E8A33D;">One chapter</span>, closing.</div>
+  </div>
+</section>
+
+<section data-label="Essay 1" data-speaker-notes="First half of the reflection." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif; display:flex; flex-direction:column; justify-content:center; padding:96px 84px; box-sizing:border-box;">
+  <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#4FD1C5; margin-bottom:32px;">Field notes</div>
+  <div style="font-family:'Fraunces',serif; font-weight:400; font-size:34px; line-height:1.5; color:#EDEAE2;">
+    The chapter really started on June 1, 2019 — my first day at Spin.
+    <br><br>
+    I took this photo four years into it — June 29, 2023, 11:08 PM — late one night, after a long day, mostly because the light looked good. I didn't know yet it would end up marking the middle of something. I definitely didn't know I'd be looking at it again years later, at the end.
+    <br><br>
+    Not scooters. Not an arch. A city, <span style="font-style:italic; color:#E8A33D;">mid-exhale</span> — opening itself up to a different way of moving through it. The arch behind them is the last piece left of Columbus's old Union Station, saved from the wrecking ball in 1979 and moved here to keep watch over a park instead of a platform. Underneath it, a small fleet sat waiting for whoever needed it next.
+  </div>
+  <div style="margin-top:40px; display:flex; gap:16px;">
+    <img src="assets/warehouse-charged-scooters.jpeg" alt="A fleet of Spin scooters charged and staged in a warehouse, ready to deploy" style="flex:1; height:160px; object-fit:cover;">
+    <img src="assets/pride-street-scooters.jpeg" alt="Spin scooters parked on a Columbus street during a Pride festival, rainbow flags in view" style="flex:1; height:160px; object-fit:cover;">
+  </div>
+  <div style="margin-top:40px; width:64px; height:1px; background:#282E38;"></div>
+</section>
+
+<section data-label="Essay 2" data-speaker-notes="Second half, the throughline about permanence and promise." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif; display:flex; flex-direction:column; justify-content:center; padding:96px 84px; box-sizing:border-box;">
+  <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#E8A33D; margin-bottom:32px;">The throughline</div>
+  <div style="font-family:'Fraunces',serif; font-weight:400; font-size:34px; line-height:1.5; color:#EDEAE2;">
+    Millions of rides later, that's the part I keep coming back to: that arch was built in the 1800s for a railroad that no longer exists. It didn't get to keep its original purpose. It got a second one, and it's still standing because of it.
+    <br><br>
+    Chapters end. The work doesn't have to. Movement, done right, was never really about the vehicle — it's a promise that outlasts whoever's <span style="font-style:italic; color:#4FD1C5;">holding it</span> at the time.
+  </div>
+  <div style="margin-top:48px; display:flex; align-items:center; gap:20px;">
+    <img src="assets/union-station-historic.jpg" alt="Columbus Union Station facade, early 1900s" style="width: 421px; height: 266px; object-fit: cover; filter: grayscale(1)">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.05em; color:#9AA2AE; line-height:1.6;">Union Station,<br>Columbus — early 1900s</div>
+  </div>
+  <div style="margin-top:40px; width:64px; height:1px; background:#282E38;"></div>
+</section>
+
+<section data-label="Person" data-speaker-notes="Steven in Spin gear, bridging the throughline to the closing gratitude." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif;">
+  <img src="assets/steven-on-scooter.jpeg" alt="Steven in a Spin Columbus shirt on a scooter, checking his phone" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%;">
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,23,28,0.1) 0%, rgba(20,23,28,0.15) 55%, rgba(20,23,28,0.95) 92%, #14171C 100%);"></div>
+  <div style="position:absolute; left:0; right:0; bottom:0; padding:64px 84px 76px; display:flex; flex-direction:column; gap:20px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#E8A33D;">Behind the fleet</div>
+    <div style="font-family:'Fraunces',serif; font-weight:400; font-size:30px; line-height:1.5; color:#EDEAE2;">
+      Somewhere in seven years, this stopped looking strange to me. A bridge, a bike lane, a fleet lined up in the fog — just Tuesday night in a city that decided to make room.
+    </div>
+  </div>
+</section>
+
+<section data-label="Detail" data-speaker-notes="Close-up detail shot, a breather beat before the closing slide." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif; display:flex; flex-direction:column;">
+  <div style="flex:1; position:relative;">
+    <img src="assets/scooter-feet-detail.jpeg" alt="Close-up of feet on a Spin scooter deck, mid-ride" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+  </div>
+  <div style="padding:56px 84px 72px; display:flex; flex-direction:column; gap:16px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#4FD1C5;">The details</div>
+    <div style="font-family:'Fraunces',serif; font-weight:400; font-style:italic; font-size:28px; line-height:1.5; color:#EDEAE2;">
+      Worn shoes on a scrappy deck — the part nobody photographs, the part that was actually the job.
+    </div>
+  </div>
+</section>
+
+<section data-label="Closing" data-speaker-notes="Gratitude close over the Genoa bridge photo, no CTA." style="position:relative; width:1080px; height:1350px; background:#14171C; overflow:hidden; font-family:'Inter',sans-serif;">
+  <img src="assets/genoa-scooters-bw.jpeg" alt="Scooters lined along the Genoa bridge with the LeVeque Tower skyline, black and white" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,23,28,0.02) 0%, rgba(20,23,28,0.1) 40%, rgba(20,23,28,0.5) 75%, #14171C 100%); left: -196px; top: 17px"></div>
+  <div style="position:absolute; left:0; right:0; top:0; padding:76px 84px 64px; display:flex; flex-direction:column; gap:20px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#4FD1C5;">Now</div>
+    <div style="font-family:'Fraunces',serif; font-weight:400; font-style:italic; font-size:32px; line-height:1.5; color:#EDEAE2;">
+      So this is me, closing a chapter and looking at the photo that opened it. I don't feel nostalgia. I feel <span style="color:#E8A33D;">grateful</span> — for the team, the riders, and a city that kept showing up long enough to let this mean something.
+    </div>
+    <div style="margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.05em; color:#9AA2AE;">Steven Needham</div>
+  </div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,31 @@
+:root{
+--font-display:'Fraunces', serif;
+--font-body:'Inter', sans-serif;
+--font-mono:'JetBrains Mono', monospace;
+
+--text-hero:clamp(2.1rem, 5.4vw, 4.1rem);
+--text-h2:clamp(1.6rem, 3vw, 2.1rem);
+--text-h2-footer:clamp(1.5rem, 3vw, 2rem);
+--text-h3:1.15rem;
+--text-nav:1.05rem;
+--text-body-lg:1.05rem;
+--text-body:1rem;
+--text-body-sm:0.94rem;
+--text-mono-md:0.85rem;
+--text-mono-sm:0.78rem;
+--text-mono-xs:0.75rem;
+--text-eyebrow:0.72rem;
+--text-tag:0.68rem;
+--text-foot:0.7rem;
+
+--leading-body:1.6;
+--leading-hero:1.12;
+--leading-h2:1.25;
+
+--tracking-eyebrow:0.14em;
+--tracking-label:0.1em;
+
+--weight-regular:400;
+--weight-medium:500;
+--weight-semibold:600;
+}

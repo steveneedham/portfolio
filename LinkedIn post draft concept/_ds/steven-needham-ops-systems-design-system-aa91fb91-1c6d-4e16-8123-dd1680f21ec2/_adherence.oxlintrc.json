@@ -1,0 +1,284 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/timeline/**",
+              "ui_kits/portfolio/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Fraunces|Inter|JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: Fraunces, Inter, JetBrains Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FooterLink'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|label|key|ref|className|style|children)$/]",
+        "message": "<FooterLink> doesn't accept that prop. Declared props: href, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LinkButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|variant|target|children|key|ref|className|style|children)$/]",
+        "message": "<LinkButton> doesn't accept that prop. Declared props: href, variant, target, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LinkButton'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:ops|sys|paper)$/]",
+        "message": "<LinkButton> variant must be one of 'ops' | 'sys' | 'paper'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavBarLink'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|label|key|ref|className|style|children)$/]",
+        "message": "<NavBarLink> doesn't accept that prop. Declared props: href, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionHeading'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|size|key|ref|className|style|children)$/]",
+        "message": "<SectionHeading> doesn't accept that prop. Declared props: eyebrow, title, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionHeading'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:h2|footer)$/]",
+        "message": "<SectionHeading> size must be one of 'h2' | 'footer'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StopCardLink'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|label|key|ref|className|style|children)$/]",
+        "message": "<StopCardLink> doesn't accept that prop. Declared props: href, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TrackLegendItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:track|label|key|ref|className|style|children)$/]",
+        "message": "<TrackLegendItem> doesn't accept that prop. Declared props: track, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TrackLegendItem'] > JSXAttribute[name.name='track'] > Literal[value!=/^(?:ops|sys)$/]",
+        "message": "<TrackLegendItem> track must be one of 'ops' | 'sys'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "FooterLink": {
+        "replaces": []
+      },
+      "LinkButton": {
+        "replaces": []
+      },
+      "NavBarLink": {
+        "replaces": []
+      },
+      "SectionHeading": {
+        "replaces": []
+      },
+      "StopCardLink": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "TrackLegendItem": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-ops",
+      "--accent-ops-dim",
+      "--accent-paper",
+      "--accent-sys",
+      "--accent-sys-dim",
+      "--amber",
+      "--amber-dim",
+      "--blur-nav",
+      "--border-default",
+      "--border-paper",
+      "--border-width",
+      "--border-width-thick",
+      "--focus-ring",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--ink",
+      "--leading-body",
+      "--leading-h2",
+      "--leading-hero",
+      "--motion-fast",
+      "--motion-slow",
+      "--muted",
+      "--muted-dim",
+      "--panel",
+      "--panel-line",
+      "--paper-accent",
+      "--paper-bg",
+      "--paper-ink",
+      "--paper-line",
+      "--paper-muted",
+      "--radius-md",
+      "--radius-sm",
+      "--space-2xl",
+      "--space-3xl",
+      "--space-4xl",
+      "--space-hero-bottom",
+      "--space-hero-top",
+      "--space-lg",
+      "--space-md",
+      "--space-nav-x",
+      "--space-page-x",
+      "--space-section-gap",
+      "--space-sm",
+      "--space-stop-gap",
+      "--space-track-gap",
+      "--space-xl",
+      "--space-xs",
+      "--surface-page",
+      "--surface-panel",
+      "--surface-paper",
+      "--teal",
+      "--teal-dim",
+      "--text",
+      "--text-body",
+      "--text-body-lg",
+      "--text-body-sm",
+      "--text-eyebrow",
+      "--text-foot",
+      "--text-h2",
+      "--text-h2-footer",
+      "--text-h3",
+      "--text-hero",
+      "--text-mono-md",
+      "--text-mono-sm",
+      "--text-mono-xs",
+      "--text-muted",
+      "--text-muted-dim",
+      "--text-nav",
+      "--text-paper",
+      "--text-paper-muted",
+      "--text-primary",
+      "--text-tag",
+      "--tracking-eyebrow",
+      "--tracking-label",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold"
+    ],
+    "tokenKinds": {
+      "--ink": "color",
+      "--panel": "color",
+      "--panel-line": "color",
+      "--amber": "color",
+      "--amber-dim": "color",
+      "--teal": "color",
+      "--teal-dim": "color",
+      "--text": "font",
+      "--muted": "color",
+      "--muted-dim": "color",
+      "--paper-bg": "color",
+      "--paper-ink": "color",
+      "--paper-muted": "color",
+      "--paper-accent": "color",
+      "--paper-line": "color",
+      "--surface-page": "color",
+      "--surface-panel": "color",
+      "--surface-paper": "color",
+      "--border-default": "color",
+      "--border-paper": "color",
+      "--text-primary": "font",
+      "--text-muted": "font",
+      "--text-muted-dim": "font",
+      "--text-paper": "font",
+      "--text-paper-muted": "font",
+      "--accent-ops": "color",
+      "--accent-ops-dim": "color",
+      "--accent-sys": "color",
+      "--accent-sys-dim": "color",
+      "--accent-paper": "color",
+      "--focus-ring": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--text-hero": "font",
+      "--text-h2": "font",
+      "--text-h2-footer": "font",
+      "--text-h3": "font",
+      "--text-nav": "font",
+      "--text-body-lg": "font",
+      "--text-body": "font",
+      "--text-body-sm": "font",
+      "--text-mono-md": "font",
+      "--text-mono-sm": "font",
+      "--text-mono-xs": "font",
+      "--text-eyebrow": "font",
+      "--text-tag": "font",
+      "--text-foot": "font",
+      "--leading-body": "font",
+      "--leading-hero": "font",
+      "--leading-h2": "font",
+      "--tracking-eyebrow": "font",
+      "--tracking-label": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--space-page-x": "spacing",
+      "--space-nav-x": "spacing",
+      "--space-track-gap": "spacing",
+      "--space-hero-top": "spacing",
+      "--space-hero-bottom": "spacing",
+      "--space-stop-gap": "spacing",
+      "--space-section-gap": "spacing",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-2xl": "spacing",
+      "--space-3xl": "spacing",
+      "--space-4xl": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--border-width": "spacing",
+      "--border-width-thick": "spacing",
+      "--motion-fast": "other",
+      "--motion-slow": "other",
+      "--blur-nav": "spacing"
+    },
+    "fontFamilies": [
+      "Fraunces",
+      "Inter",
+      "JetBrains Mono"
+    ]
+  }
+}
