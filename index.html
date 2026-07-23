@@ -126,22 +126,32 @@ img{display:block;max-width:100%}
 
 /* ---------- Signal strip ---------- */
 .signal-strip{
-  display:flex;gap:2rem;flex-wrap:wrap;
+  overflow:hidden;
   padding:0.6rem var(--space-nav-x);
   font-family:var(--font-mono);font-size:var(--text-mono-xs);
   border-bottom:var(--border-width) solid var(--border-default);
   background:var(--panel);
 }
+.signal-track{display:flex;width:max-content}
+.signal-track.is-ready{animation:signal-scroll 32s linear infinite}
+.signal-strip:hover .signal-track,.signal-strip:focus-within .signal-track{animation-play-state:paused}
+.signal-group{display:flex;gap:2rem;padding-right:2rem}
 .signal-item{display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-muted)}
 .signal-item a{color:inherit;transition:color var(--motion-fast)}
 .signal-item a:hover{color:var(--text-primary)}
 .signal-dot{width:6px;height:6px;border-radius:50%;flex:none}
-.signal-icon{width:13px;height:13px;border-radius:3px;flex:none}
+.signal-icon{
+  width:13px;height:13px;border-radius:3px;flex:none;
+  animation:signal-flash 1.8s ease-in-out infinite;
+}
+.signal-trend{color:var(--teal);font-weight:600}
 .signal-item[data-kind="new"] .signal-dot{background:var(--amber)}
 .signal-item[data-kind="trending"] .signal-dot{
   background:var(--teal);
   animation:pulse 1.8s ease-in-out infinite;
 }
+@keyframes signal-scroll{to{transform:translateX(-50%)}}
+@keyframes signal-flash{0%,100%{opacity:1}50%{opacity:0.35}}
 @keyframes pulse{
   0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(79,209,197,0.5)}
   50%{opacity:0.6;box-shadow:0 0 0 4px rgba(79,209,197,0)}
@@ -313,6 +323,9 @@ img{display:block;max-width:100%}
 
 @media (prefers-reduced-motion:reduce){
   .stop{opacity:1;transform:none;transition:none}
+  .signal-strip{overflow-x:auto}
+  .signal-track.is-ready,.signal-icon{animation:none}
+  .signal-group[aria-hidden="true"]{display:none}
   .signal-item[data-kind="trending"] .signal-dot{animation:none}
   .stop.is-trending::before{animation:none}
   html{scroll-behavior:auto}
@@ -330,21 +343,46 @@ img{display:block;max-width:100%}
   </div>
 </nav>
 
-<div class="signal-strip">
-  <span class="signal-item" data-kind="new">
-    <span class="signal-dot"></span>
-    <a href="https://www.linkedin.com/in/steveneedham/recent-activity/" target="_blank" rel="noopener">New LinkedIn post</a>
-  </span>
-  <span class="signal-item" data-kind="trending">
-    <span class="signal-dot"></span>
-    <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank" rel="noopener">Columbus PantryMap — traffic up this week</a>
-  </span>
-  <span class="signal-item" data-kind="trending">
-    <span class="signal-dot"></span>
-    <img class="signal-icon" src="assets/icons/map-layer.svg" alt="">
-    <a href="https://steveneedham.github.io/columbus-dog-treat-trail/" target="_blank" rel="noopener">Columbus Dog Treat Trail — trending</a>
-  </span>
+<div class="signal-strip" aria-label="Recent activity">
+  <div class="signal-track">
+    <div class="signal-group">
+      <span class="signal-item" data-kind="new">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/network-hubs.svg" alt="">
+        <a href="./projects/technology-ecosystem.html">Technology ecosystem &amp; architecture evidence</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/youtube.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://youtu.be/yVT9xROc858?si=0iY4D1YPgF0tpI47" target="_blank" rel="noopener">A lighthearted take on the past 7 years</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/map-layer.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank" rel="noopener">Columbus PantryMap — traffic up this week</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/map-layer.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://steveneedham.github.io/columbus-dog-treat-trail/" target="_blank" rel="noopener">Columbus Dog Treat Trail — trending</a>
+      </span>
+    </div>
+  </div>
 </div>
+<script>
+  const signalTrack = document.querySelector('.signal-track');
+  const signalGroup = signalTrack?.querySelector('.signal-group');
+  if (signalTrack && signalGroup) {
+    const signalClone = signalGroup.cloneNode(true);
+    signalClone.setAttribute('aria-hidden', 'true');
+    signalClone.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
+    signalTrack.appendChild(signalClone);
+    signalTrack.classList.add('is-ready');
+  }
+</script>
 
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline poster="columbus-skyline-bike-scooter.png">
