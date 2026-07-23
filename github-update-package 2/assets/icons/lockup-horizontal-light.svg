@@ -1,8 +1,0 @@
-<svg viewBox="0 0 560 80" xmlns="http://www.w3.org/2000/svg">
-  <rect width="560" height="80" fill="#faf9f5"></rect>
-  <line x1="40" y1="40" x2="180" y2="40" stroke="#8B93A1" stroke-width="2"></line>
-  <circle cx="40" cy="40" r="7" fill="#B3382C"></circle>
-  <circle cx="106" cy="40" r="15" fill="#faf9f5" stroke="#2C6A64" stroke-width="3"></circle>
-  <circle cx="180" cy="40" r="7" fill="#2C6A64"></circle>
-  <text x="205" y="49" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="600" fill="#14171C">Steven Needham</text>
-</svg>
