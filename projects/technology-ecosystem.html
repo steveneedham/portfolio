@@ -55,6 +55,13 @@
     h1{max-width:14ch;margin:0;font-size:clamp(3rem,7vw,6.6rem);line-height:.98;letter-spacing:-.035em}
     h1 em{color:var(--amber);font-weight:400}
     .lede{max-width:50rem;margin:2rem 0 0;color:var(--muted);font-size:clamp(1.05rem,1.6vw,1.3rem)}
+    .download-link{
+      display:inline-flex;align-items:center;gap:.7rem;margin-top:2rem;padding-bottom:.25rem;
+      color:var(--teal);border-bottom:1px solid rgba(79,209,197,.45);
+      font:.72rem/1.4 var(--mono);letter-spacing:.05em;text-decoration:none
+    }
+    .download-link:hover{color:var(--text);border-color:var(--text)}
+    .download-link span{color:var(--dim)}
     .meta{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;margin:3rem 0 0}
     .meta div{max-width:18rem}
     .meta dt,.project-meta dt{color:var(--dim);margin-bottom:.3rem}
@@ -147,6 +154,10 @@
       <p class="eyebrow">Technology ecosystem &amp; capabilities</p>
       <h1>Field operations, made <em>legible.</em></h1>
       <p class="lede">A working technology practice built around the full path from conditions on the ground to usable decisions: collect the signal, structure it, test the logic, communicate the result, and improve the operation.</p>
+      <a class="download-link" href="../assets/downloads/Steven-Needham-Technology-Ecosystem.pdf" download>
+        Download the two-page PDF →
+        <span>PDF · 1.6 MB</span>
+      </a>
       <dl class="meta">
         <div><dt>Practice</dt><dd>Operations leadership · systems design · civic technology</dd></div>
         <div><dt>Primary role</dt><dd>Translator and builder between field teams, data, and decision-makers</dd></div>
