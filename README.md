@@ -1,42 +1,25 @@
-# Steven Needham — Portfolio
+# GitHub update package — Steven Needham portfolio
 
-**Personal portfolio site — field operations leadership and hands-on systems work in Columbus, Ohio**
+Prepared from this session's design-system work. This project can't push to GitHub directly — apply these by hand (or hand this folder to whoever manages the repo).
 
-[View the live site →](https://steveneedham.github.io/portfolio/)
+## For `steveneedham/portfolio` (the live site)
 
----
+- **`homepage-source-updated.html`** — your real homepage's pre-bundle source (`<x-dc>` template), extracted from the live bundle, with one addition: a `SignalStrip` "new/trending" line now renders under the nav (2 example items — a LinkedIn post and PantryMap traffic, edit `signalItems` to your real content). This is the file to re-bundle and redeploy as `index.html`.
+  - Everything else already matched the deployed site 1:1 (hero video single-source, meta row, per-track stop links, 10-icon footer social row) — no other changes needed there.
+- **`assets/icons/`** — full icon set including the new `311-agent.svg` (headset + scooter wheels, red/teal). Same folder your `SignalStrip`/footer icons already reference.
+- **`assets/logo.svg`** — confirmed to match your real extracted mark (`icon-square-dark.svg`/`lockup-horizontal-dark.svg`) node-for-node; included for reference, no change needed on the live site.
 
-## What this is
+## For this design-system project
 
-A single self-contained HTML homepage — no build step, no server, no dependencies
-— laid out as two parallel tracks (Ops & Leadership / Systems & Tools) that
-converge into one story, plus project detail pages under `projects/`.
+Already committed here — nothing to hand-apply:
+- `components/core/SignalStrip.jsx` (+ `.d.ts`/`.prompt.md`)
+- `components/timeline/StopCard.jsx` — new `trending` prop (pulsing dot + "↑ trending" label)
+- `templates/` — 404/Error Page, Resume/CV, Case Study, Editorial Report, Story Slides, Portfolio Page (all updated)
+- `assets/icons/311-agent.svg`, `guidelines/icons.html` (icon/logo specimen), `guidelines/analytics.html` (gtag standard)
 
-- **Ops & Leadership** — event readiness playbooks, operator performance and
-  coaching systems, competitive market analysis, process change management,
-  internal/leadership comms
-- **Systems & Tools** — a live multi-fleet operations dashboard, vehicle
-  performance analytics, [Columbus PantryMap](projects/columbus-pantry-map.html),
-  documentation/SOP audits, dev environment tooling, inbox automation, and the
-  Community Mobility Hubs civic-tech project that this site grew out of
+## To apply the homepage change
 
-Ten-plus years running people-heavy operations in micromobility, now building
-the dashboards, playbooks, and automation that make those operations legible.
-
-## Built with
-
-- Plain HTML, CSS, and vanilla JavaScript — no framework, no build step
-- Custom design tokens (CSS variables), Fraunces / Inter / JetBrains Mono via Google Fonts
-- IntersectionObserver for scroll-in reveal animations
-- Built with [Claude](https://claude.ai)
-
-## History
-
-This site merges two previously separate repos: `community-mobility-hubs`
-(the original hero/tracks design, now the homepage) and `portfolio` (a simple
-project index, now folded in as project stops and detail pages under
-`projects/`). `community-mobility-hubs` now redirects here.
-
----
-
-*Steven Needham · [linkedin.com/in/steveneedham](https://linkedin.com/in/steveneedham) · [github.com/steveneedham](https://github.com/steveneedham)*
+1. Take `homepage-source-updated.html`.
+2. Re-bundle it the same way the current `index.html` was produced (your existing bundler/export step).
+3. Replace `steveneedham/portfolio/index.html` with the new bundle output.
+4. Commit + push.
