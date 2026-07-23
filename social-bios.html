@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Profiles — Steven Needham</title>
+<meta name="description" content="A master list of Steven Needham's social profile bios across GitHub, LinkedIn, Bluesky, Instagram, Threads, Facebook, Linktree, and his portfolio.">
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#14171C;
+  --panel:#1B1F27;
+  --line:#282E38;
+  --amber:#E8A33D;
+  --teal:#4FD1C5;
+  --text:#EDEAE2;
+  --muted:#8B93A1;
+  --dim:#5B6270;
+  --display:'Fraunces',serif;
+  --body:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.nav{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem clamp(1.5rem,5vw,4rem);
+  background:rgba(20,23,28,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-name{font-family:var(--display);font-size:1.05rem;font-weight:500}
+.nav a:last-child{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.nav a:last-child:hover{color:var(--text)}
+main{max-width:1050px;margin:0 auto;padding:clamp(5rem,10vw,8rem) clamp(1.5rem,7vw,5rem) 7rem}
+.eyebrow{
+  margin-bottom:1.2rem;
+  color:var(--teal);
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+h1{
+  max-width:12ch;
+  margin:0;
+  font-family:var(--display);
+  font-size:clamp(2.8rem,7vw,5.6rem);
+  font-weight:500;
+  line-height:1.02;
+}
+.intro{max-width:55ch;margin:1.8rem 0 4.5rem;color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.profile{
+  min-height:220px;
+  padding:2rem 2rem 2.4rem 0;
+  border-bottom:1px solid var(--line);
+}
+.profile:nth-child(odd){padding-right:3rem;border-right:1px solid var(--line)}
+.profile:nth-child(even){padding-left:3rem}
+.platform{
+  display:flex;align-items:center;gap:.7rem;
+  margin-bottom:1.2rem;
+  color:var(--amber);
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.platform img{width:22px;height:22px;border-radius:4px}
+.bio{margin:0;font-family:var(--display);font-size:clamp(1.2rem,2.2vw,1.55rem);line-height:1.42}
+.profile-link{
+  display:inline-block;
+  margin-top:1.4rem;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:.72rem;
+  border-bottom:1px solid var(--dim);
+}
+.profile-link:hover{color:var(--teal);border-color:var(--teal)}
+footer{
+  display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;
+  padding:2rem clamp(1.5rem,5vw,4rem);
+  border-top:1px solid var(--line);
+  color:var(--dim);
+  font-family:var(--mono);
+  font-size:.7rem;
+}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .profile,.profile:nth-child(odd),.profile:nth-child(even){
+    min-height:0;padding:2rem 0;border-right:0;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-name" href="./index.html">Steven Needham</a>
+  <a href="./index.html">← portfolio</a>
+</nav>
+
+<main>
+  <div class="eyebrow">Voice system · social profiles</div>
+  <h1>Same person. Different rooms.</h1>
+  <p class="intro">A platform-by-platform set of bios with one consistent through-line: cities, systems, curiosity, and the productive consequences of thinking about things a little too much.</p>
+
+  <section class="grid" aria-label="Social profile bios">
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/github.svg" alt="">GitHub</div>
+      <p class="bio">Geospatial data, micromobility ops, dev tooling. Professional overthinker—it’s how the queries get optimized.</p>
+      <a class="profile-link" href="https://github.com/steveneedham" target="_blank" rel="noopener">github.com/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/linkedin.svg" alt="">LinkedIn</div>
+      <p class="bio">Urban mobility, city operations, and data systems. Professional overthinker—it’s how complicated things become workable.</p>
+      <a class="profile-link" href="https://www.linkedin.com/in/steveneedham" target="_blank" rel="noopener">linkedin.com/in/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/bluesky.svg" alt="">Bluesky</div>
+      <p class="bio">Cities, mobility, data, and civic life. Professional overthinker—it’s how better streets get imagined.</p>
+      <a class="profile-link" href="https://bsky.app/profile/steveneedham" target="_blank" rel="noopener">bsky.app/profile/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/instagram.svg" alt="">Instagram</div>
+      <p class="bio">Columbus, city movement, dogs, and whatever caught my eye. Professional overthinker—it’s how ordinary things become interesting.</p>
+      <a class="profile-link" href="https://www.instagram.com/steveneedham" target="_blank" rel="noopener">instagram.com/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/threads.svg" alt="">Threads</div>
+      <p class="bio">Urbanism, technology, and side-project rabbit holes. Professional overthinker—it’s how one thought becomes seventeen.</p>
+      <a class="profile-link" href="https://www.threads.com/@steveneedham" target="_blank" rel="noopener">threads.com/@steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/facebook.svg" alt="">Facebook</div>
+      <p class="bio">Columbus life, civic curiosity, and occasional personal updates. Professional overthinker—it’s how a quick post becomes an essay.</p>
+      <a class="profile-link" href="https://www.facebook.com/steveneedham" target="_blank" rel="noopener">facebook.com/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/linktree.svg" alt="">Linktree</div>
+      <p class="bio">Geospatial data, urban analysis, and tools for better cities. Professional overthinker—it’s how the dots get connected.</p>
+      <a class="profile-link" href="https://linktr.ee/steveneedham" target="_blank" rel="noopener">linktr.ee/steveneedham →</a>
+    </article>
+
+    <article class="profile">
+      <div class="platform"><img src="assets/icons/favicon.svg" alt="">Portfolio</div>
+      <p class="bio">I build systems, tools, and stories that help people and cities move forward. Professional overthinker—it’s how the pieces connect.</p>
+      <a class="profile-link" href="./index.html">view portfolio →</a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <span>Steven Needham · Columbus, Ohio</span>
+  <span>Professional overthinker, consistently.</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steven Needham — Operations &amp; Systems</title>
+<meta name="description" content="Field operations leadership meets hands-on systems work. Ten-plus years running people-heavy operations in micromobility, now building the dashboards, playbooks, and automation that make those operations legible.">
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K5VW97BT8W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-K5VW97BT8W');
+</script>
+
+<style>
+/* Sourced live from Google Fonts — same CDN the site has always used. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  /* Dark surface (primary — homepage) */
+  --ink:#14171C;
+  --panel:#1B1F27;
+  --panel-line:#282E38;
+  --amber:#E8A33D;
+  --amber-dim:#7A5B2C;
+  --teal:#4FD1C5;
+  --teal-dim:#2C6A64;
+  --text:#EDEAE2;
+  --muted:#8B93A1;
+  --muted-dim:#5B6270;
+
+  /* Semantic aliases */
+  --surface-page:var(--ink);
+  --border-default:var(--panel-line);
+  --text-primary:var(--text);
+  --text-muted:var(--muted);
+  --text-muted-dim:var(--muted-dim);
+  --accent-ops:var(--amber);
+  --accent-ops-dim:var(--amber-dim);
+  --accent-sys:var(--teal);
+  --accent-sys-dim:var(--teal-dim);
+  --focus-ring:var(--amber);
+
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+
+  --text-hero:clamp(2.1rem, 5.4vw, 4.1rem);
+  --text-h2:clamp(1.6rem, 3vw, 2.1rem);
+  --text-h2-footer:clamp(1.5rem, 3vw, 2rem);
+  --text-h3:1.15rem;
+  --text-nav:1.05rem;
+  --text-body-lg:1.05rem;
+  --text-body:1rem;
+  --text-body-sm:0.94rem;
+  --text-mono-md:0.85rem;
+  --text-mono-sm:0.78rem;
+  --text-mono-xs:0.75rem;
+  --text-eyebrow:0.72rem;
+  --text-tag:0.68rem;
+  --text-foot:0.7rem;
+
+  --leading-body:1.6;
+  --leading-hero:1.12;
+  --leading-h2:1.25;
+
+  --tracking-eyebrow:0.14em;
+  --tracking-label:0.1em;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+
+  --space-page-x:clamp(1.5rem, 8vw, 6rem);
+  --space-nav-x:clamp(1.5rem, 5vw, 4rem);
+  --space-track-gap:clamp(1.5rem, 5vw, 4rem);
+  --space-hero-top:8rem;
+  --space-hero-bottom:4rem;
+  --space-stop-gap:2.6rem;
+  --space-section-gap:2rem;
+
+  --radius-sm:3px;
+  --border-width:1px;
+
+  --motion-fast:0.2s ease;
+  --motion-slow:0.6s ease;
+  --blur-nav:10px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--surface-page);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:var(--text-body);
+  line-height:var(--leading-body);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem var(--space-nav-x);
+  background:rgba(20,23,28,0.72);
+  backdrop-filter:blur(var(--blur-nav));
+  -webkit-backdrop-filter:blur(var(--blur-nav));
+  border-bottom:var(--border-width) solid var(--border-default);
+}
+.nav-name{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--text-nav);
+}
+.nav-links{display:flex;gap:1.8rem;font-family:var(--font-mono);font-size:var(--text-mono-sm)}
+.nav-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+.nav-links a:hover{color:var(--text-primary)}
+
+/* ---------- Signal strip ---------- */
+.signal-strip{
+  overflow:hidden;
+  padding:0.6rem var(--space-nav-x);
+  font-family:var(--font-mono);font-size:var(--text-mono-xs);
+  border-bottom:var(--border-width) solid var(--border-default);
+  background:var(--panel);
+}
+.signal-track{display:flex;width:max-content}
+.signal-track.is-ready{animation:signal-scroll 32s linear infinite}
+.signal-strip:hover .signal-track,.signal-strip:focus-within .signal-track{animation-play-state:paused}
+.signal-group{display:flex;gap:2rem;padding-right:2rem}
+.signal-item{display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-muted)}
+.signal-item a{color:inherit;transition:color var(--motion-fast)}
+.signal-item a:hover{color:var(--text-primary)}
+.signal-dot{width:6px;height:6px;border-radius:50%;flex:none}
+.signal-icon{
+  width:13px;height:13px;border-radius:3px;flex:none;
+  animation:signal-flash 1.8s ease-in-out infinite;
+}
+.signal-trend{color:var(--teal);font-weight:600}
+.signal-item[data-kind="new"] .signal-dot{background:var(--amber)}
+.signal-item[data-kind="trending"] .signal-dot{
+  background:var(--teal);
+  animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes signal-scroll{to{transform:translateX(-50%)}}
+@keyframes signal-flash{0%,100%{opacity:1}50%{opacity:0.35}}
+@keyframes pulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(79,209,197,0.5)}
+  50%{opacity:0.6;box-shadow:0 0 0 4px rgba(79,209,197,0)}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;overflow:hidden;min-height:90vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--space-hero-top) var(--space-page-x) var(--space-hero-bottom);
+}
+.hero-video{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:100%;height:100%;object-fit:cover;opacity:0.3;z-index:0;
+}
+.hero-scrim{position:absolute;inset:0;background:rgba(20,23,28,0.5);z-index:1}
+.hero-eyebrow{
+  position:relative;z-index:2;
+  font-family:var(--font-mono);font-size:var(--text-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:1.6rem;
+}
+.hero h1{
+  position:relative;z-index:2;
+  font-family:var(--font-display);font-weight:500;
+  font-size:var(--text-hero);line-height:var(--leading-hero);
+  max-width:15ch;margin:0;
+}
+.hero h1 em{font-style:italic;color:var(--accent-ops)}
+.hero p{
+  position:relative;z-index:2;margin-top:1.8rem;max-width:52ch;
+  color:var(--text-muted);font-size:var(--text-body-lg);
+}
+.hero-meta{
+  position:relative;z-index:2;margin-top:2.6rem;
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:0.78rem;color:var(--muted-dim);
+}
+.hero-meta strong{
+  color:var(--text-muted);display:block;font-size:0.7rem;
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem;font-weight:500;
+}
+
+/* ---------- Track legend ---------- */
+.track-legend{
+  display:flex;gap:2rem;align-items:center;
+  padding:0.8rem var(--space-page-x);
+  font-family:var(--font-mono);font-size:var(--text-mono-xs);
+  letter-spacing:var(--tracking-label);text-transform:uppercase;
+  color:var(--text-muted);
+  border-top:var(--border-width) solid var(--border-default);
+  border-bottom:var(--border-width) solid var(--border-default);
+}
+.legend-item{display:inline-flex;align-items:center;gap:0.5rem}
+.legend-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.legend-item[data-track="ops"] .legend-dot{background:var(--accent-ops)}
+.legend-item[data-track="sys"] .legend-dot{background:var(--accent-sys)}
+
+/* ---------- Work / timeline ---------- */
+.work{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 var(--space-track-gap);
+  padding:2rem var(--space-page-x) 3rem;
+}
+.col-label{
+  font-family:var(--font-mono);font-size:var(--text-mono-xs);
+  letter-spacing:var(--tracking-label);text-transform:uppercase;
+  margin-bottom:2rem;
+}
+.col-label[data-track="ops"]{color:var(--accent-ops)}
+.col-label[data-track="sys"]{color:var(--accent-sys)}
+.track{position:relative;padding-left:2.4rem}
+.track[data-track="ops"]{--track-accent:var(--accent-ops);--track-accent-dim:var(--accent-ops-dim)}
+.track[data-track="sys"]{--track-accent:var(--accent-sys);--track-accent-dim:var(--accent-sys-dim)}
+.track::before{
+  content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(to bottom, var(--track-accent-dim), var(--track-accent));
+}
+.stop{position:relative;padding-bottom:var(--space-stop-gap);opacity:0;transform:translateY(14px);transition:opacity var(--motion-slow),transform var(--motion-slow)}
+.stop.is-visible{opacity:1;transform:none}
+.stop:not(.is-last){border-bottom:var(--border-width) solid var(--border-default)}
+.stop::before{
+  content:"";position:absolute;left:-2.4rem;top:0.35rem;width:9px;height:9px;
+  border-radius:50%;background:var(--track-accent);
+}
+.track[data-track="ops"] .stop.is-trending::before{animation:dot-pulse-ops 1.8s ease-in-out infinite}
+.track[data-track="sys"] .stop.is-trending::before{animation:dot-pulse-sys 1.8s ease-in-out infinite}
+@keyframes dot-pulse-ops{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(232,163,61,0.5)}
+  50%{opacity:0.6;box-shadow:0 0 0 4px rgba(232,163,61,0)}
+}
+@keyframes dot-pulse-sys{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(79,209,197,0.5)}
+  50%{opacity:0.6;box-shadow:0 0 0 4px rgba(79,209,197,0)}
+}
+.stop-header{display:flex;align-items:baseline;gap:0.7rem;flex-wrap:wrap}
+.trending-badge{
+  font-family:var(--font-mono);font-size:var(--text-tag);
+  letter-spacing:var(--tracking-label);text-transform:uppercase;
+  color:var(--track-accent);
+}
+.stop h3{
+  font-family:var(--font-display);font-weight:500;font-size:var(--text-h3);
+  margin:0 0 0.5rem;
+}
+.stop-header h3{margin:0}
+.stop p{color:var(--text-muted);margin:0 0 0.9rem;font-size:var(--text-body-sm)}
+.stop-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.9rem}
+.tag{
+  font-family:var(--font-mono);font-size:var(--text-tag);
+  letter-spacing:var(--tracking-label);text-transform:uppercase;
+  color:var(--text-muted);border:var(--border-width) solid var(--border-default);
+  border-radius:var(--radius-sm);padding:0.25rem 0.5rem;
+}
+.stop-link{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-family:var(--font-mono);font-size:var(--text-mono-sm);
+  text-decoration:none;border-bottom:1px solid;padding-bottom:2px;
+  transition:color var(--motion-fast);
+}
+.stop-link img{width:14px;height:14px;border-radius:3px}
+.track[data-track="ops"] .stop-link{color:var(--accent-ops);border-color:var(--accent-ops-dim)}
+.track[data-track="sys"] .stop-link{color:var(--accent-sys);border-color:var(--accent-sys-dim)}
+.stop-link:hover{opacity:0.8}
+
+/* ---------- About ---------- */
+.about{padding:2rem var(--space-page-x) 7rem;max-width:68ch}
+.eyebrow{
+  font-family:var(--font-mono);font-size:var(--text-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:0.9rem;
+}
+.about h2{
+  font-family:var(--font-display);font-weight:500;font-size:var(--text-h2);
+  line-height:var(--leading-h2);margin:0;
+}
+.about p{color:var(--text-muted);margin:1.4rem 0 0}
+.about p + p{margin-top:1.1rem}
+.about strong{color:var(--text-primary);font-weight:500}
+
+/* ---------- Footer ---------- */
+.footer{
+  padding:3.5rem var(--space-page-x) 2rem;
+  border-top:var(--border-width) solid var(--border-default);
+}
+.footer h2{
+  font-family:var(--font-display);font-weight:500;font-size:var(--text-h2-footer);
+  margin:0 0 1.8rem;max-width:20ch;
+}
+.footer-links{
+  display:flex;flex-wrap:wrap;gap:0.5rem 2rem;
+  font-family:var(--font-mono);font-size:var(--text-mono-md);
+  padding:0;margin:0 0 1.2rem;list-style:none;
+}
+.footer-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+.footer-links a:hover{color:var(--accent-ops)}
+.footer-note{font-family:var(--font-mono);font-size:var(--text-foot);color:var(--muted-dim)}
+.social-row{
+  padding:0 var(--space-page-x) 3rem;
+  display:flex;gap:0.7rem;align-items:center;flex-wrap:wrap;
+}
+.social-row a{display:block;line-height:0;transition:opacity var(--motion-fast)}
+.social-row a:hover{opacity:0.8}
+.social-row img{width:30px;height:30px;border-radius:6px}
+
+@media (max-width:760px){
+  .work{grid-template-columns:1fr;gap:3rem 0}
+  .nav-links{gap:1.1rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .stop{opacity:1;transform:none;transition:none}
+  .signal-strip{overflow-x:auto}
+  .signal-track.is-ready,.signal-icon{animation:none}
+  .signal-group[aria-hidden="true"]{display:none}
+  .signal-item[data-kind="trending"] .signal-dot{animation:none}
+  .stop.is-trending::before{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-name">Steven Needham</span>
+  <div class="nav-links">
+    <a href="#work">work</a>
+    <a href="#about">about</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<div class="signal-strip" aria-label="Recent activity">
+  <div class="signal-track">
+    <div class="signal-group">
+      <span class="signal-item" data-kind="new">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/network-hubs.svg" alt="">
+        <a href="./projects/technology-ecosystem.html">Technology ecosystem &amp; architecture evidence</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/youtube.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://youtu.be/yVT9xROc858?si=0iY4D1YPgF0tpI47" target="_blank" rel="noopener">A lighthearted take on the past 7 years</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/map-layer.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank" rel="noopener">Columbus PantryMap — traffic up this week</a>
+      </span>
+      <span class="signal-item" data-kind="trending">
+        <span class="signal-dot"></span>
+        <img class="signal-icon" src="assets/icons/map-layer.svg" alt="">
+        <span class="signal-trend" aria-label="Trending">↑</span>
+        <a href="https://steveneedham.github.io/columbus-dog-treat-trail/" target="_blank" rel="noopener">Columbus Dog Treat Trail — trending</a>
+      </span>
+    </div>
+  </div>
+</div>
+<script>
+  const signalTrack = document.querySelector('.signal-track');
+  const signalGroup = signalTrack?.querySelector('.signal-group');
+  if (signalTrack && signalGroup) {
+    const signalClone = signalGroup.cloneNode(true);
+    signalClone.setAttribute('aria-hidden', 'true');
+    signalClone.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
+    signalTrack.appendChild(signalClone);
+    signalTrack.classList.add('is-ready');
+  }
+</script>
+
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="columbus-skyline-bike-scooter.png">
+    <source src="urban_.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+  <div class="hero-eyebrow">Operations &amp; Systems — Columbus, OH</div>
+  <h1>I build environments — at work and in life — where people feel <em>safe, seen,</em> and able to move forward.</h1>
+  <p>Field operations leadership meets hands-on systems work. Ten-plus years running people-heavy operations in micromobility, now building the dashboards, playbooks, and automation that make those operations legible.</p>
+  <div class="hero-meta">
+    <div><strong>Based</strong>Columbus, Ohio</div>
+    <div><strong>Focus</strong>Ops leadership · data systems · civic tech</div>
+    <div><strong>Open to</strong>Fractional ops consulting · analytics builds · SOP &amp; documentation work</div>
+  </div>
+</section>
+
+<div class="track-legend">
+  <span class="legend-item" data-track="ops"><span class="legend-dot"></span>Ops &amp; Leadership Line</span>
+  <span class="legend-item" data-track="sys"><span class="legend-dot"></span>Systems &amp; Tools Line</span>
+</div>
+
+<section id="work" class="work">
+  <div>
+    <div class="col-label" data-track="ops">Ops &amp; Leadership</div>
+    <div class="track" data-track="ops">
+
+      <div class="stop">
+        <h3>Columbus micromobility field report</h3>
+        <p>A field-level writeup of Columbus micromobility operations — coverage patterns, deployment strategy, and on-the-ground observations from running fleet operations across the city.</p>
+        <div class="stop-tags"><span class="tag">Field ops</span><span class="tag">Reporting</span></div>
+      </div>
+
+      <div class="stop is-trending">
+        <div class="stop-header"><h3>Shared micromobility deserves its own conversation</h3><span class="trending-badge">↑ trending</span></div>
+        <p>A perspective on why professionally managed shared mobility should be understood separately from privately owned electric bikes and scooters.</p>
+        <div class="stop-tags"><span class="tag">Safety</span><span class="tag">Public communication</span></div>
+        <a class="stop-link" href="./shared-micromobility-editorial-final.html" target="_blank" rel="noopener"><img src="assets/icons/document-download.svg" alt="">Read perspective →</a>
+      </div>
+
+      <div class="stop is-trending">
+        <div class="stop-header"><h3>Seven years. One era, closing.</h3><span class="trending-badge">↑ trending</span></div>
+        <p>A visual essay reflecting on seven years in shared micromobility operations, anchored by a late-night photograph beneath the Union Station Arch in Columbus.</p>
+        <div class="stop-tags"><span class="tag">Field notes</span><span class="tag">Visual essay</span></div>
+        <a class="stop-link" href="./LinkedIn%20Post%20-%20Arch%20Essay%20%28standalone%29.html" target="_blank" rel="noopener"><img src="assets/icons/document-download.svg" alt="">Read essay →</a>
+      </div>
+
+      <div class="stop">
+        <h3>Large-event readiness playbooks</h3>
+        <p>Built the operational plan for a major citywide festival's multi-day fleet coverage, setting swap targets, staffing windows, and a park-specific deployment strategy from the ground up.</p>
+        <div class="stop-tags"><span class="tag">Event ops</span><span class="tag">Capacity planning</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Community mobility activations</h3>
+        <p>Planned and supported public-facing mobility experiences over seven years, connecting thousands of people with shared transportation through community events, sporting events, civic partnerships, and rider education — including Life After Cars, Open Streets Columbus, Bike to Work Day, scooter valet programs, and experiential marketing campaigns.</p>
+        <div class="stop-tags"><span class="tag">Community engagement</span><span class="tag">Event operations</span><span class="tag">Public partnerships</span><span class="tag">Experiential marketing</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Operator performance &amp; coaching system</h3>
+        <p>Designed a grading framework for a mixed contracted/direct workforce, identifying top performers for shift-lead development and flagging coaching conversations before they became retention problems.</p>
+        <div class="stop-tags"><span class="tag">Workforce development</span><span class="tag">People management</span></div>
+        <a class="stop-link" href="https://steveneedham.github.io/portfolio/columbus_ops_dashboard.html" target="_blank" rel="noopener"><img src="assets/icons/external-link.svg" alt="">View project →</a>
+      </div>
+
+      <div class="stop">
+        <h3>Competitive market analysis</h3>
+        <p>Ran head-to-head service-quality comparisons against a competing operator to sharpen where the team's coverage strategy needed to adjust.</p>
+        <div class="stop-tags"><span class="tag">Market analysis</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Process change management</h3>
+        <p>Authored and rolled out a formal process change notice restructuring how work orders and tasks flowed through the team, with a communication plan for a distributed workforce.</p>
+        <div class="stop-tags"><span class="tag">SOP writing</span><span class="tag">Change management</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Internal comms &amp; team communication</h3>
+        <p>Wrote the team's recurring operational updates and safety communications — calm, transparent, and direct, especially when conditions on the ground were difficult.</p>
+        <div class="stop-tags"><span class="tag">Leadership comms</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Italian Village Society / SNF meeting representative</h3>
+        <p>Represented the fleet operator as delegate at the Short North Foundation member meeting, reporting on fleet operations and coordinating with neighborhood stakeholders.</p>
+        <div class="stop-tags"><span class="tag">Civic engagement</span><span class="tag">Community partnerships</span></div>
+        <a class="stop-link" href="https://shortnorthcivic.org/wp-content/uploads/2025/02/SNF-Member-Reports-Jan-2025.pdf" target="_blank" rel="noopener"><img src="assets/icons/document-download.svg" alt="">View report →</a>
+      </div>
+
+      <div class="stop is-last">
+        <h3>Short North Civic Association LinkUS presentation</h3>
+        <p>Attended on behalf of the fleet operator as the LinkUS transit initiative was presented to the Short North Civic Association, tracking implications for the city's shared-mobility network.</p>
+        <div class="stop-tags"><span class="tag">Civic engagement</span><span class="tag">Transit advocacy</span></div>
+        <a class="stop-link" href="https://shortnorthcivic.org/wp-content/uploads/2024/11/9-5-24-Meeting-Minutes.pdf" target="_blank" rel="noopener"><img src="assets/icons/document-download.svg" alt="">View minutes →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+    <div class="col-label" data-track="sys">Systems &amp; Tools</div>
+    <div class="track" data-track="sys">
+
+      <div class="stop">
+        <h3>Technology ecosystem &amp; architecture evidence</h3>
+        <p>A technical portfolio tracing capabilities across operations, data, geospatial systems, software, automation, and applied AI — with representative architectures for 311 response, GBFS fleet intelligence, and battery accountability.</p>
+        <div class="stop-tags"><span class="tag">System architecture</span><span class="tag">Operational intelligence</span><span class="tag">Applied AI</span></div>
+        <a class="stop-link" href="./projects/technology-ecosystem.html"><img src="assets/icons/network-hubs.svg" alt="">View architecture →</a>
+      </div>
+
+      <div class="stop">
+        <h3>Live multi-fleet operations dashboard</h3>
+        <p>Built a browser-based dashboard pulling real-time public feeds from two competing mobility fleets alongside internal operational data — with anomaly detection, AI-generated briefings, and a live chat panel for the ops team.</p>
+        <div class="stop-tags"><span class="tag">React</span><span class="tag">Real-time data</span><span class="tag">Dashboarding</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Vehicle performance analytics</h3>
+        <p>Analyzed roughly six months and 20,000+ rides of fleet data to identify chronic underperforming vehicles and the neighborhoods driving the most demand, informing where to concentrate maintenance and deployment.</p>
+        <div class="stop-tags"><span class="tag">Data analysis</span><span class="tag">Fleet ops</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Columbus PantryMap</h3>
+        <p>An interactive map of roughly 90 mutual-aid food locations across Central Ohio — little free pantries, blessing boxes, and community fridges — with category filters, search, and geolocation. Inspired by UW's PantryMap pilot in Seattle.</p>
+        <div class="stop-tags"><span class="tag">Civic tech</span><span class="tag">Maps</span><span class="tag">Leaflet</span></div>
+        <a class="stop-link" href="https://steveneedham.github.io/columbus-pantry-map/" target="_blank" rel="noopener"><img src="assets/icons/map-layer.svg" alt="">View project →</a>
+      </div>
+
+      <div class="stop">
+        <h3>Columbus Dog Treat Trail</h3>
+        <p>A companion map to PantryMap for little dog treat stands, stick libraries, water bowls, and toy boxes spotted on walks around Columbus, sourced from a crowdsourced Google Sheet with a submission-and-approval flow instead of a fixed dataset.</p>
+        <div class="stop-tags"><span class="tag">Civic tech</span><span class="tag">Maps</span><span class="tag">Leaflet</span></div>
+        <a class="stop-link" href="https://steveneedham.github.io/columbus-dog-treat-trail/" target="_blank" rel="noopener"><img src="assets/icons/map-layer.svg" alt="">View project →</a>
+      </div>
+
+      <div class="stop">
+        <h3>Knowledge-gap audit</h3>
+        <p>Ran a systematic audit of the team's documentation, surfacing a dozen undocumented operational blind spots and prioritizing which needed SOPs first.</p>
+        <div class="stop-tags"><span class="tag">Documentation</span><span class="tag">Process audit</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Cross-machine dev environment</h3>
+        <p>Set up a synced development environment across Mac and Windows for Python automation and scripting work, with a dotfiles repo to keep both machines consistent.</p>
+        <div class="stop-tags"><span class="tag">Python</span><span class="tag">Dev tooling</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Inbox &amp; signal filtering</h3>
+        <p>Rebuilt a personal inbox's filter and label system to cut newsletter noise and surface the handful of email types that actually needed same-day attention.</p>
+        <div class="stop-tags"><span class="tag">Automation</span></div>
+      </div>
+
+      <div class="stop">
+        <h3>Community mobility hubs</h3>
+        <p>A civic-tech project mapping out how transit, bike share, and micromobility can converge into real neighborhood hubs — built and published independently as part of ongoing transit advocacy work in Columbus. This site is that project, expanded into a full portfolio.</p>
+        <div class="stop-tags"><span class="tag">Civic tech</span><span class="tag">Transit advocacy</span></div>
+        <a class="stop-link" href="https://steveneedham.github.io/community-mobility-hubs/" target="_blank" rel="noopener"><img src="assets/icons/external-link.svg" alt="">View project →</a>
+      </div>
+
+      <div class="stop is-last">
+        <h3>Open Mobility Foundation (OMF) contributor network</h3>
+        <p>Active in the Open Mobility Foundation community, following and engaging with the open standards work shaping how cities and operators exchange mobility data.</p>
+        <div class="stop-tags"><span class="tag">Open source</span><span class="tag">Data standards</span></div>
+        <a class="stop-link" href="https://github.com/orgs/openmobilityfoundation/followers" target="_blank" rel="noopener"><img src="assets/icons/external-link.svg" alt="">View network →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="eyebrow">About</div>
+  <h2>Two ways of working, one underlying question: how do you make a system feel safe to move through?</h2>
+  <p>Steven spent the past several years leading field operations for a micromobility fleet in Columbus, Ohio — managing a mixed workforce of contracted and direct operators, running the analytics that told the story of a whole city's rideshare network, and building the SOPs that turned tribal knowledge into something a team could actually rely on.</p>
+  <p>He's now stepping into a more independent chapter: <strong>fractional operations consulting, dashboard and analytics builds, SOP and documentation work, Python automation, and civic tech</strong> through Columbus's transit advocacy community. The through-line is the same north star it's always been — building environments, digital or physical, where people feel safe, seen, and able to move forward.</p>
+</section>
+
+<footer id="contact" class="footer">
+  <h2>Let's build something that moves people forward.</h2>
+  <ul class="footer-links">
+    <li><a href="./social-bios.html">Social profiles — master bio list</a></li>
+    <li><a href="https://linktr.ee/steveneedham" target="_blank" rel="noopener">Linktree — /steveneedham</a></li>
+    <li><a href="https://www.linkedin.com/in/steveneedham" target="_blank" rel="noopener">LinkedIn — /in/steveneedham</a></li>
+    <li><a href="https://www.instagram.com/steveneedham" target="_blank" rel="noopener">Instagram — @steveneedham</a></li>
+    <li><a href="https://github.com/steveneedham" target="_blank" rel="noopener">GitHub — steveneedham</a></li>
+  </ul>
+  <div class="footer-note">Columbus, Ohio · Portfolio last updated July 2026</div>
+</footer>
+<div class="social-row">
+  <a href="https://linktr.ee/steveneedham" target="_blank" rel="noopener" aria-label="Linktree"><img src="assets/icons/linktree.svg" alt="Linktree"></a>
+  <a href="https://bsky.app/profile/steveneedham" target="_blank" rel="noopener" aria-label="Bluesky"><img src="assets/icons/bluesky.svg" alt="Bluesky"></a>
+  <a href="https://github.com/steveneedham" target="_blank" rel="noopener" aria-label="GitHub"><img src="assets/icons/github.svg" alt="GitHub"></a>
+  <a href="https://www.instagram.com/steveneedham" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
+  <a href="https://www.linkedin.com/in/steveneedham" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
+  <a href="https://www.facebook.com/steveneedham" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+  <a href="https://www.tiktok.com/@scootinsteve" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/icons/tiktok.svg" alt="TikTok"></a>
+  <a href="https://www.youtube.com/channel/UCQdekzvpQgP0RDj58E-9PaA" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/icons/youtube.svg" alt="YouTube"></a>
+  <a href="https://api.whatsapp.com/send?phone=16146959067" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"></a>
+  <a href="https://www.threads.com/@steveneedham" target="_blank" rel="noopener" aria-label="Threads"><img src="assets/icons/threads.svg" alt="Threads"></a>
+</div>
+
+<script>
+  // Scroll reveal — once per element, respects prefers-reduced-motion (handled in CSS too)
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var stops = document.querySelectorAll('.stop');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    stops.forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.stop').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+</script>
+
+</body>
+</html>
