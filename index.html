@@ -318,7 +318,8 @@ img{display:block;max-width:100%}
 
 @media (max-width:760px){
   .work{grid-template-columns:1fr;gap:3rem 0}
-  .nav-links{gap:1.1rem}
+  .nav{align-items:flex-start}
+  .nav-links{flex:1;flex-wrap:wrap;justify-content:flex-end;gap:0.5rem 1.1rem;min-width:0}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -339,6 +340,7 @@ img{display:block;max-width:100%}
   <div class="nav-links">
     <a href="#work">work</a>
     <a href="#about">about</a>
+    <a href="#contact">urban consultancy</a>
     <a href="#contact">contact</a>
   </div>
 </nav>
