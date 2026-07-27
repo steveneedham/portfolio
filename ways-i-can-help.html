@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ways I Can Help — Steven Needham</title>
+<meta name="description" content="Urban strategy consulting from Steven Needham: a practical starting point for operations, systems, data, documentation, and civic technology work.">
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K5VW97BT8W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-K5VW97BT8W');
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#14171C;
+  --panel:#1B1F27;
+  --panel-line:#282E38;
+  --amber:#E8A33D;
+  --text:#EDEAE2;
+  --muted:#8B93A1;
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --page-x:clamp(1.5rem,8vw,6rem);
+  --nav-x:clamp(1.5rem,5vw,4rem);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:1rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.1rem var(--nav-x);
+  background:rgba(20,23,28,0.82);
+  border-bottom:1px solid var(--panel-line);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.nav-name{font-family:var(--font-display);font-weight:500;font-size:1.05rem}
+.nav-links{
+  display:flex;
+  gap:1.8rem;
+  font-family:var(--font-mono);
+  font-size:0.78rem;
+}
+.nav-links a{color:var(--muted);transition:color 0.2s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--text)}
+.nav-links .nav-consulting{color:var(--amber);font-weight:500}
+.nav-links .nav-consulting:hover{color:var(--text)}
+
+main{
+  width:min(100%,82rem);
+  margin:0 auto;
+  padding:clamp(5rem,10vw,8rem) var(--page-x) 7rem;
+}
+.intro{max-width:52rem;margin-bottom:clamp(3rem,7vw,5rem)}
+.consulting-logo{
+  width:min(100%,28rem);
+  height:auto;
+  margin:0 0 3rem;
+}
+.eyebrow{
+  margin-bottom:1.5rem;
+  color:var(--amber);
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+h1{
+  max-width:12ch;
+  margin:0;
+  font-family:var(--font-display);
+  font-size:clamp(2.7rem,7vw,5.5rem);
+  font-weight:500;
+  line-height:1.04;
+  letter-spacing:-0.025em;
+}
+.intro p{
+  max-width:42rem;
+  margin:1.8rem 0 0;
+  color:var(--muted);
+  font-size:clamp(1rem,2vw,1.12rem);
+}
+.form-section{
+  padding-top:2rem;
+  border-top:1px solid var(--panel-line);
+}
+.form-heading{
+  margin:0 0 1.25rem;
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:400;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+.airtable-frame{
+  overflow:hidden;
+  background:var(--panel);
+  border:1px solid var(--panel-line);
+}
+.airtable-embed{display:block;width:100%;height:533px;border:0}
+.back-link{
+  display:inline-block;
+  margin-top:2rem;
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:0.78rem;
+}
+.back-link:hover{color:var(--amber)}
+
+@media (max-width:760px){
+  .nav{align-items:flex-start}
+  .nav-links{flex:1;flex-wrap:wrap;justify-content:flex-end;gap:0.5rem 1.1rem;min-width:0}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary navigation">
+  <a class="nav-name" href="./index.html">Steven Needham</a>
+  <div class="nav-links">
+    <a href="./index.html#work">work</a>
+    <a href="./index.html#about">about</a>
+    <a class="nav-consulting" href="./ways-i-can-help.html" aria-current="page">urban strategist consulting</a>
+    <a href="./index.html#contact">contact</a>
+  </div>
+</nav>
+
+<main>
+  <header class="intro">
+    <img class="consulting-logo" src="assets/icons/lockup-horizontal-dark.svg" alt="Steven Needham">
+    <div class="eyebrow">Urban strategist consulting</div>
+    <h1>Ways I Can Help</h1>
+    <p>Tell me what you are working through. This short form is a starting point for identifying the operational, systems, data, or documentation support that would be most useful.</p>
+  </header>
+
+  <section class="form-section" aria-labelledby="start-heading">
+    <h2 id="start-heading" class="form-heading">Start a conversation</h2>
+    <div class="airtable-frame">
+      <iframe class="airtable-embed" src="https://airtable.com/embed/apptZhCX79JiIsia7/shrtdxOpHOzAT8Fkq" title="Ways I Can Help consultation form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+    </div>
+    <a class="back-link" href="./index.html">← Back to portfolio</a>
+  </section>
+</main>
+
+</body>
+</html>
