@@ -79,9 +79,19 @@ main{
 }
 .intro{max-width:52rem;margin-bottom:clamp(3rem,7vw,5rem)}
 .consulting-logo{
-  width:min(100%,28rem);
-  height:auto;
+  position:relative;
+  width:min(100%,26.25rem);
+  aspect-ratio:420/160;
   margin:0 0 3rem;
+  overflow:hidden;
+}
+.consulting-logo img{
+  position:absolute;
+  top:-12.5%;
+  left:-4.7619%;
+  width:214.2857%;
+  max-width:none;
+  height:auto;
 }
 .eyebrow{
   margin-bottom:1.5rem;
@@ -155,7 +165,9 @@ h1{
 
 <main>
   <header class="intro">
-    <img class="consulting-logo" src="assets/icons/lockup-horizontal-dark.svg" alt="Steven Needham">
+    <div class="consulting-logo">
+      <img src="branding/urban-strategist-logo.svg" alt="Steven Needham — Urban Strategist, Ops, Systems, Civic Tech">
+    </div>
     <div class="eyebrow">Urban strategist consulting</div>
     <h1>Ways I Can Help</h1>
     <p>Tell me what you are working through. This short form is a starting point for identifying the operational, systems, data, or documentation support that would be most useful.</p>
