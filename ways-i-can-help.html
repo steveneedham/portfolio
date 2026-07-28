@@ -116,6 +116,23 @@ h1{
   color:var(--muted);
   font-size:clamp(1rem,2vw,1.12rem);
 }
+.commitments{
+  max-width:64rem;
+  margin:0 0 clamp(3rem,7vw,5rem);
+  padding:2.5rem 0;
+  border-top:1px solid var(--panel-line);
+  border-bottom:1px solid var(--panel-line);
+}
+.commitments h2{
+  max-width:18ch;
+  margin:.4rem 0 1rem;
+  font-family:var(--font-display);
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:500;
+  line-height:1.15;
+}
+.commitments p{max-width:48rem;color:var(--muted)}
+.commitments a,.access-note a{color:var(--text);text-decoration:underline;text-underline-offset:.2em}
 .form-section{
   padding-top:2rem;
   border-top:1px solid var(--panel-line);
@@ -143,6 +160,7 @@ h1{
   font-size:0.78rem;
 }
 .back-link:hover{color:var(--amber)}
+.access-note{max-width:52rem;margin:2rem 0 0;color:var(--muted);font-size:.9rem}
 
 @media (max-width:760px){
   .nav{align-items:flex-start}
@@ -173,11 +191,19 @@ h1{
     <p>Tell me what you are working through. This short form is a starting point for identifying the operational, systems, data, or documentation support that would be most useful.</p>
   </header>
 
+  <section class="commitments" aria-labelledby="commitments-heading">
+    <div class="eyebrow">Practice commitments</div>
+    <h2 id="commitments-heading">LGBTQ-owned. Accessibility-conscious. Evidence-led.</h2>
+    <p>I design strategies, services, and communications that account for different bodies, abilities, identities, and ways of navigating public systems. Alternative formats and reasonable communication accommodations are available on request.</p>
+    <p><a href="./accessibility.html">Read the accessibility and accommodations commitment</a>.</p>
+  </section>
+
   <section class="form-section" aria-labelledby="start-heading">
     <h2 id="start-heading" class="form-heading">Start a conversation</h2>
     <div class="airtable-frame">
       <iframe class="airtable-embed" src="https://airtable.com/embed/apptZhCX79JiIsia7/shrtdxOpHOzAT8Fkq" title="Ways I Can Help consultation form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
     </div>
+    <p class="access-note">If the embedded form is difficult to use, <a href="mailto:sjneedham@icloud.com?subject=Consulting%20inquiry">email the same request directly</a>. Accessibility feedback is acknowledged within two business days.</p>
     <a class="back-link" href="./index.html">← Back to portfolio</a>
   </section>
 </main>

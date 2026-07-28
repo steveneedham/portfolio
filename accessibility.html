@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility &amp; accommodations — Steven Needham</title>
+  <meta name="description" content="Steven Needham's accessibility commitment, accommodations process, known limitations, and feedback contact.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root{--ink:#14171C;--text:#EDEAE2;--muted:#AAB1BC;--line:#303640;--amber:#E8A33D;--display:'Fraunces',serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--page-x:clamp(1.5rem,8vw,6rem)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--text);font:1rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-underline-offset:.2em}a:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:1.1rem clamp(1.5rem,5vw,4rem);border-bottom:1px solid var(--line)}
+    .nav-name{font:500 1.05rem var(--display);text-decoration:none}.nav a:last-child{color:var(--muted);font:.78rem var(--mono)}
+    main{max-width:72rem;margin:auto;padding:clamp(5rem,10vw,8rem) var(--page-x) 7rem}
+    header{max-width:62ch;margin-bottom:5rem}.eyebrow{color:var(--amber);font:.72rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+    h1{font:500 clamp(3rem,8vw,6rem)/1.02 var(--display);letter-spacing:-.025em;margin:.8rem 0 1.3rem}
+    h2{font:500 clamp(1.8rem,4vw,3rem)/1.15 var(--display);margin:.4rem 0 1rem}
+    p,li{color:var(--muted)}strong{color:var(--text);font-weight:500}
+    section{padding:3rem 0;border-top:1px solid var(--line);max-width:68ch}
+    li{margin:.7rem 0}.commitment{border-left:2px solid var(--amber);padding-left:1.25rem}
+    .meta{font:.72rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3rem}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="nav-name" href="./index.html">Steven Needham</a>
+    <a href="./index.html#contact">Contact</a>
+  </nav>
+  <main>
+    <header>
+      <div class="eyebrow">Accessibility &amp; accommodations</div>
+      <h1>Access belongs in<br><em>the operating model.</em></h1>
+      <p>I want this portfolio and my consulting practice to be usable by as many people as possible. The work targets WCAG 2.2 Level AA and treats accessibility feedback as evidence for improving the system.</p>
+    </header>
+
+    <section aria-labelledby="measures-heading">
+      <div class="eyebrow">01 / Current measures</div>
+      <h2 id="measures-heading">How access is supported.</h2>
+      <ul>
+        <li>Semantic page structure, descriptive links, keyboard-operable controls, and visible focus.</li>
+        <li>Text and interface contrast designed for AA, with written labels rather than color alone.</li>
+        <li>Responsive layouts that reflow for smaller screens and enlarged text.</li>
+        <li>Reduced-motion support and no essential meaning conveyed through animation.</li>
+        <li>Text alternatives for meaningful images and prose explanations for complex visuals.</li>
+        <li>Accessible HTML alternatives or remediation support for documents when needed.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="accommodations-heading">
+      <div class="eyebrow">02 / Accommodations</div>
+      <h2 id="accommodations-heading">Ask for the format or channel that works.</h2>
+      <p>Reasonable communication accommodations and alternative formats are available on request. This can include a plain-language summary, accessible HTML in place of a document, a different meeting or response channel, advance materials, or additional processing time.</p>
+    </section>
+
+    <section aria-labelledby="limitations-heading">
+      <div class="eyebrow">03 / Known limitations</div>
+      <h2 id="limitations-heading">What may still create barriers.</h2>
+      <p>Some third-party embeds—including the Airtable consulting form—are outside my direct control. Some legacy PDFs, slide decks, and archived pages may also need document-specific remediation. When an embed or file is not usable, I will provide the same information or process through an accessible alternative.</p>
+    </section>
+
+    <section aria-labelledby="feedback-heading">
+      <div class="eyebrow">04 / Feedback</div>
+      <h2 id="feedback-heading">Tell me where the system gets in the way.</h2>
+      <div class="commitment">
+        <p><a href="mailto:sjneedham@icloud.com?subject=Accessibility%20feedback">Email accessibility feedback or request an accommodation</a>.</p>
+        <p>I will acknowledge accessibility feedback within two business days, then share the next step, an accessible alternative, or a remediation timeline.</p>
+      </div>
+      <p class="meta">Last reviewed 28 July 2026 · Columbus, Ohio</p>
+      <p><a href="./index.html">← Return to the portfolio</a></p>
+    </section>
+  </main>
+</body>
+</html>

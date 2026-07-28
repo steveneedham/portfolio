@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Hey Famm profile</title>
+  <desc id="desc">A lowercase hf monogram in amber and teal on the Steven Needham design system dark square.</desc>
+  <rect width="200" height="200" rx="28" fill="#14171C"/>
+  <path d="M52 52v96M52 101c0-20 12-32 30-32s29 12 29 32v47"
+        fill="none" stroke="#E8A33D" stroke-width="16"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M151 148V78c0-20 11-31 29-31M132 91h42"
+        fill="none" stroke="#4FD1C5" stroke-width="16"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
