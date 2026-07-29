@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- PostHog analytics -->
+  <script defer src="https://us-assets.i.posthog.com/static/array.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.posthog) {
+        posthog.init('phc_rshqFPsvRswuFx5GRpkifRgNwG8X7nA7fSbLnQPgUT3W', {
+          api_host: 'https://us.i.posthog.com',
+          ui_host: 'https://us.posthog.com'
+        });
+      }
+    });
+  </script>
+
   <meta charset="utf-8">
   <title>Columbus Micromobility — Steven Needham / Ops &amp; Systems</title>
   <style>

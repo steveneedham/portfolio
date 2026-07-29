@@ -1,3 +1,16 @@
+<!-- PostHog analytics -->
+<script defer src="https://us-assets.i.posthog.com/static/array.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.posthog) {
+      posthog.init('phc_rshqFPsvRswuFx5GRpkifRgNwG8X7nA7fSbLnQPgUT3W', {
+        api_host: 'https://us.i.posthog.com',
+        ui_host: 'https://us.posthog.com'
+      });
+    }
+  });
+</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5VW97BT8W"></script>
 <script>
