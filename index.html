@@ -264,7 +264,7 @@ img{display:block;max-width:100%}
   content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
   background:linear-gradient(to bottom, var(--track-accent-dim), var(--track-accent));
 }
-.stop{position:relative;padding-bottom:var(--space-stop-gap);opacity:0;transform:translateY(14px);transition:opacity var(--motion-slow),transform var(--motion-slow)}
+.stop{position:relative;padding-bottom:var(--space-stop-gap);scroll-margin-top:6rem;opacity:0;transform:translateY(14px);transition:opacity var(--motion-slow),transform var(--motion-slow)}
 .stop.is-visible{opacity:1;transform:none}
 .stop:not(.is-last){border-bottom:var(--border-width) solid var(--border-default)}
 .stop::before{
@@ -521,7 +521,7 @@ img{display:block;max-width:100%}
         <div class="stop-tags"><span class="tag">Leadership comms</span></div>
       </div>
 
-      <div class="stop">
+      <div class="stop" id="transit-columbus-march-2025">
         <h3>Veo Rep: Transit Columbus Update (March 2025)</h3>
         <p>Public briefing and update on Columbus's micromobility ecosystem.</p>
         <div class="stop-tags"><span class="tag">Civic engagement</span><span class="tag">Public briefing</span><span class="tag">Micromobility ecosystem</span></div>
