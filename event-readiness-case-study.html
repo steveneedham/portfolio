@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event-Readiness Analytics — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#11141A; --panel:#1A1E26; --panel2:#20242D;
+  --line:rgba(255,255,255,0.08); --line-strong:rgba(255,255,255,0.14);
+  --text:#E8EAED; --text-dim:#9BA3AF; --text-faint:#6B7280;
+  --amber:#E8874A; --teal:#4FBBA0; --red:#E2626A; --blue:#5B9FE0;
+  --mono:'IBM Plex Mono',monospace; --display:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;font-size:16px;}
+::selection{background:var(--amber);color:#12151A;}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+/* HERO */
+.hero{padding:100px 0 70px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-200px;right:-150px;width:500px;height:500px;
+  background:radial-gradient(circle, rgba(232,135,74,0.10) 0%, transparent 70%);pointer-events:none;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 12px var(--amber);}
+h1{font-family:var(--display);font-weight:600;font-size:44px;line-height:1.15;letter-spacing:-0.01em;max-width:760px;margin-bottom:22px;}
+.hero p.lede{font-size:18px;color:var(--text-dim);max-width:640px;font-weight:400;}
+.hero-meta{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;}
+.hero-meta div{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+.hero-meta div b{display:block;color:var(--text);font-size:14px;font-family:var(--body);font-weight:600;margin-top:3px;}
+
+.track-marker{display:flex;align-items:center;gap:9px;padding:14px 0 0;font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+.track-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);}
+.track-sep{color:var(--line-strong);}
+.track-item{color:var(--text-dim);}
+
+/* SECTION SCAFFOLD */
+section{padding:64px 0;border-bottom:1px solid var(--line);}
+.sec-label{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;}
+h2{font-family:var(--display);font-size:28px;font-weight:600;margin-bottom:18px;letter-spacing:-0.005em;}
+p{color:var(--text-dim);font-size:15.5px;max-width:680px;margin-bottom:14px;}
+p strong{color:var(--text);font-weight:600;}
+
+/* CONTEXT GRID */
+.ctx-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+@media(max-width:640px){.ctx-grid{grid-template-columns:1fr;}}
+.ctx-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;}
+.ctx-card .k{font-family:var(--mono);font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+.ctx-card .v{font-size:14.5px;color:var(--text-dim);line-height:1.55;}
+
+/* QUERY LOG — signature element */
+.log-intro{margin-bottom:32px;}
+.log{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.log-head{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel2);}
+.log-dot{width:9px;height:9px;border-radius:50%;}
+.log-head span{font-family:var(--mono);font-size:12px;color:var(--text-faint);margin-left:6px;}
+.log-body{padding:6px 0;}
+.log-row{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(255,255,255,0.05);position:relative;}
+.log-row:last-child{border-bottom:none;}
+.log-row:hover{background:rgba(255,255,255,0.015);}
+.log-idx{font-family:var(--mono);font-size:12px;color:var(--text-faint);padding-top:2px;}
+.log-content .q{font-family:var(--mono);font-size:13.5px;color:var(--text);margin-bottom:6px;line-height:1.5;}
+.log-content .q::before{content:'❯ ';color:var(--amber);}
+.log-content .a{font-size:13.5px;color:var(--text-dim);padding-left:16px;border-left:2px solid var(--line-strong);}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.06em;padding:2px 8px;border-radius:99px;margin-left:8px;position:relative;top:-1px;}
+.tag-fix{background:rgba(226,98,106,0.15);color:var(--red);}
+.tag-build{background:rgba(91,159,224,0.15);color:var(--blue);}
+.tag-insight{background:rgba(79,187,160,0.15);color:var(--teal);}
+
+/* LESSONS */
+.lesson-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;}
+.lesson{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 26px;position:relative;}
+.lesson-num{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:10px;letter-spacing:0.06em;}
+.lesson h3{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:10px;color:var(--text);}
+.lesson p{font-size:14.5px;margin-bottom:0;max-width:100%;}
+.lesson .example{margin-top:12px;padding:12px 14px;background:var(--panel2);border-radius:8px;border-left:2px solid var(--teal);}
+.lesson .example .lbl{font-family:var(--mono);font-size:10px;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
+.lesson .example p{font-size:13.5px;color:var(--text-dim);margin:0;}
+
+/* METRICS STRIP */
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+@media(max-width:640px){.metric-strip{grid-template-columns:1fr 1fr;}}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+.metric .n{font-family:var(--display);font-size:26px;font-weight:600;color:var(--amber);}
+.metric .l{font-size:12px;color:var(--text-faint);margin-top:4px;}
+
+/* OUTCOME */
+.outcome-list{list-style:none;margin-top:24px;}
+.outcome-list li{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
+.outcome-list li:last-child{border-bottom:none;}
+.outcome-list .check{width:20px;height:20px;border-radius:50%;background:rgba(79,187,160,0.15);color:var(--teal);
+  display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px;font-family:var(--mono);}
+.outcome-list .txt{font-size:14.5px;color:var(--text-dim);}
+.outcome-list .txt strong{color:var(--text);}
+
+/* METHOD */
+.method-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.method-tag{font-family:var(--mono);font-size:12px;padding:7px 13px;background:var(--panel);border:1px solid var(--line);border-radius:99px;color:var(--text-dim);}
+
+footer{padding:48px 0 60px;}
+footer p{font-size:13px;color:var(--text-faint);}
+.note{background:var(--panel);border:1px solid var(--line-strong);border-left:2px solid var(--amber);border-radius:8px;padding:16px 20px;margin-top:24px;}
+.note p{font-size:13.5px;color:var(--text-dim);margin:0;}
+.note .lbl{font-family:var(--mono);font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  text-decoration:none;
+  margin-bottom:40px;
+  transition:opacity 0.2s ease;
+}
+.back-link:hover{opacity:0.8;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <a href="./" class="back-link">← Back to portfolio</a>
+
+  <div class="hero">
+    <div class="eyebrow">Case Study · Operations Analytics</div>
+    <h1>Turning a week of scattered data requests into a repeatable event-readiness playbook</h1>
+    <p class="lede">How iterative, natural-language querying against live fleet, ride, and workforce data — corrected in real time — became the operational plan for a major public event weekend.</p>
+    <div class="hero-meta">
+      <div>Context<b>Mid-size US city · shared micromobility</b></div>
+      <div>Data sources<b>Fleet telemetry · ride logs · timesheets · action logs</b></div>
+      <div>Timeframe<b>~10 days, two consecutive event weekends</b></div>
+    </div>
+  </div>
+
+  <div class="track-marker">
+    <span class="track-dot"></span>
+    <span>Systems &amp; Tools</span>
+    <span class="track-sep">/</span>
+    <span class="track-item">Data &amp; Analytics Pipeline</span>
+  </div>
+
+  <section id="context">
+    <div class="sec-label">01 — Context</div>
+    <h2>Two festivals, same city block, one week apart</h2>
+    <p>A mid-size US city hosts back-to-back public festivals in the same downtown park corridor — one over a weekend, the next running one day longer. The operator managing part of the shared micromobility fleet needed to know: <strong>what actually happened last weekend, and what has to change before the next one.</strong></p>
+    <div class="ctx-grid">
+      <div class="ctx-card"><div class="k">Fleet</div><div class="v">A mixed fleet of e-scooters and two e-bike models, positioned across zones with very different demand patterns — a nightlife corridor, a downtown waterfront, and a university district.</div></div>
+      <div class="ctx-card"><div class="k">Workforce</div><div class="v">A blended crew of contracted operators and in-house staff, plus a specialized rebalance-only role. Some logged activity looked like field work but was actually warehouse battery diagnostics.</div></div>
+      <div class="ctx-card"><div class="k">Competitive landscape</div><div class="v">A second operator running a comparable fleet in the same city, tracked via public availability feeds — used as a benchmark for uptime and zone density, not named directly.</div></div>
+      <div class="ctx-card"><div class="k">The ask</div><div class="v">Not a single report — a running, corrected analysis across a week of new data drops: fleet snapshots, ride exports, action logs, and payroll data, each refining the picture.</div></div>
+    </div>
+  </section>
+
+  <section id="log">
+    <div class="sec-label">02 — The Query Log</div>
+    <h2>What was actually asked, in order</h2>
+    <p class="log-intro">The real value wasn't any single chart — it was the sequence. Each question either <span style="color:var(--blue);">built</span> on the last, <span style="color:var(--red);">corrected</span> a wrong assumption, or surfaced an <span style="color:var(--teal);">insight</span> that changed the plan. A condensed, anonymized version of that sequence:</p>
+
+    <div class="log">
+      <div class="log-head">
+        <div class="log-dot" style="background:var(--red);"></div>
+        <div class="log-dot" style="background:var(--amber);"></div>
+        <div class="log-dot" style="background:var(--teal);"></div>
+        <span>query_history.log</span>
+      </div>
+      <div class="log-body">
+        <div class="log-row">
+          <div class="log-idx">01</div>
+          <div class="log-content">
+            <div class="q">Summarize the past week day-by-day, and flag where the plan fell short for the next event <span class="tag tag-build">build</span></div>
+            <div class="a">Produced a daily narrative from inference — reasonable, but not grounded in the actual operator action logs yet.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">02</div>
+          <div class="log-content">
+            <div class="q">Here are the actual logged actions for that week — redo it <span class="tag tag-fix">fix</span></div>
+            <div class="a">Replaced inference with ground truth. Surfaced the real top performers, the real overnight coverage gap, and one operator whose swaps were making the fleet worse, not better.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">03</div>
+          <div class="log-content">
+            <div class="q">What about the bike fleet specifically — highest revenue trips and where they start? <span class="tag tag-insight">insight</span></div>
+            <div class="a">Two bike models split cleanly by zone: one dominated the nightlife/park corridor, the other dominated the downtown/waterfront corridor. Neither model won everywhere.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">04</div>
+          <div class="log-content">
+            <div class="q">Calculate rides inside this exact event polygon, for this exact time window <span class="tag tag-build">build</span></div>
+            <div class="a">Point-in-polygon filtering against a real festival-boundary shape file, not an approximate radius. Precision mattered — the first polygon supplied was actually 2km from the venue in question.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">05</div>
+          <div class="log-content">
+            <div class="q">Wait — that day wasn't the event I thought it was <span class="tag tag-fix">fix</span></div>
+            <div class="a">A full recalibration. What had been treated as "no event, regular weekend" baseline data was actually the <em>first</em> festival's real performance — meaning it was a benchmark to beat, not a floor to compare against.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">06</div>
+          <div class="log-content">
+            <div class="q">Apply a historical attendance multiplier to project the next event's demand <span class="tag tag-build">build</span></div>
+            <div class="a">Turned one event's actuals into a forward-looking demand target for the next one — a simple multiplication that changed every staffing and battery-swap number downstream.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">07</div>
+          <div class="log-content">
+            <div class="q">How many battery swaps were actually needed to hit that target? <span class="tag tag-insight">insight</span></div>
+            <div class="a">Converted "the fleet felt low on battery" into an exact number: swaps completed vs. swaps required to hold average charge above a healthy threshold across the event window. The gap was the whole story.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">08</div>
+          <div class="log-content">
+            <div class="q">One of these workers is a mechanic, not a field operator <span class="tag tag-fix">fix</span></div>
+            <div class="a">A single correction that fixed every downstream grading table. Warehouse battery-diagnostic activity looks identical to bad field work in raw exports — same negative deltas — until you separate the role.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">09</div>
+          <div class="log-content">
+            <div class="q">Break every operator's swaps down by vehicle model <span class="tag tag-build">build</span></div>
+            <div class="a">A worker × model cross-tab exposed who specialized in which vehicle type, and confirmed the model with the worst uptime was also getting the least consistent field attention.</div>
+          </div>
+        </div>
+        <div class="log-row">
+          <div class="log-idx">10</div>
+          <div class="log-content">
+            <div class="q">Summarize everything as a portfolio case study, anonymized <span class="tag tag-insight">insight</span></div>
+            <div class="a">This page.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lessons">
+    <div class="sec-label">03 — Lessons Learned</div>
+    <h2>What ten days of iterative querying actually taught</h2>
+
+    <div class="lesson-grid">
+      <div class="lesson">
+        <div class="lesson-num">LESSON 01</div>
+        <h3>Get the baseline right before you benchmark anything</h3>
+        <p>The single biggest correction in this whole process was realizing that a data window I'd assumed was a "normal, no-event weekend" was in fact the first festival's actual performance. Every downstream target had been calibrated against the wrong floor.</p>
+        <div class="example"><div class="lbl">In practice</div><p>Before setting any target number, explicitly confirm what conditions produced the comparison data — don't infer it from the calendar.</p></div>
+      </div>
+
+      <div class="lesson">
+        <div class="lesson-num">LESSON 02</div>
+        <h3>Raw activity logs conflate roles until you separate them</h3>
+        <p>A worker doing warehouse battery-pack diagnostics produces the exact same signature in the data — high starting charge, no completion reading, negative delta — as a field worker doing genuinely bad swaps. Grading them the same way punishes good workers and hides real problems.</p>
+        <div class="example"><div class="lbl">In practice</div><p>Classify by behavioral pattern (location, start/end values, shift timing) before calculating any performance average across a team.</p></div>
+      </div>
+
+      <div class="lesson">
+        <div class="lesson-num">LESSON 03</div>
+        <h3>Fleet-wide averages hide zone-specific truths</h3>
+        <p>Neither vehicle model was "better" in the abstract. One consistently earned more per trip in the park/nightlife corridor; the other won decisively downtown. A single fleet-wide revenue-per-ride number would have masked both facts and led to the wrong deployment call.</p>
+        <div class="example"><div class="lbl">In practice</div><p>Always cut performance metrics by the geography or context they occurred in before averaging them into one number.</p></div>
+      </div>
+
+      <div class="lesson">
+        <div class="lesson-num">LESSON 04</div>
+        <h3>Translate a felt problem into an exact number</h3>
+        <p>"The fleet felt low on charge all weekend" isn't actionable. Calculating exact swaps-completed vs. swaps-required against a target average charge turned a vague impression into a specific, schedulable gap — and pointed at exactly which overnight shift needed to change.</p>
+        <div class="example"><div class="lbl">In practice</div><p>Whenever a problem is described qualitatively, look for the underlying quantity that would make the gap unambiguous.</p></div>
+      </div>
+
+      <div class="lesson">
+        <div class="lesson-num">LESSON 05</div>
+        <h3>Precision on scope changes the answer, not just the decimal places</h3>
+        <p>Filtering "rides in the general area" versus rides inside the exact festival boundary polygon, in the exact permitted time window, produced meaningfully different numbers — and the first boundary shape supplied was, on inspection, over a mile from the actual venue.</p>
+        <div class="example"><div class="lbl">In practice</div><p>Verify the geographic or temporal scope of an analysis against ground truth before trusting the output, especially when the source data was hand-entered.</p></div>
+      </div>
+
+      <div class="lesson">
+        <div class="lesson-num">LESSON 06</div>
+        <h3>The same operational gap will repeat unless the schedule structurally changes it</h3>
+        <p>An uncovered overnight window showed up as the same battery-health failure point across multiple event nights in the data. Naming it once wasn't enough — the fix had to be a specific shift reassignment, not a general reminder to "cover nights better."</p>
+        <div class="example"><div class="lbl">In practice</div><p>When a pattern recurs across multiple independent data pulls, treat it as a structural scheduling problem, not a one-off execution miss.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outcome">
+    <div class="sec-label">04 — Outcome</div>
+    <h2>What changed operationally</h2>
+    <p>By the time the second festival opened, the plan had shifted from a general "run it like last time" approach to a specific, numbered playbook:</p>
+    <ul class="outcome-list">
+      <li><div class="check">✓</div><div class="txt"><strong>A named battery-swap target</strong> for the event window, tied to a specific average-charge floor — not a vague "keep batteries up"</div></li>
+      <li><div class="check">✓</div><div class="txt"><strong>A pre-event overnight staffing shift</strong> that addressed the coverage gap, scheduled before the festival weekend started</div></li>
+      <li><div class="check">✓</div><div class="txt"><strong>Zone-specific vehicle deployment</strong> based on actual revenue data by model and location, replacing an even distribution</div></li>
+      <li><div class="check">✓</div><div class="txt"><strong>A corrected performance grading system</strong> that separated warehouse diagnostics from field work, stopping the penalization of good operators</div></li>
+      <li><div class="check">✓</div><div class="txt"><strong>Event-polygon-based ride filtering</strong> for all future event analyses — no more approximate-radius guessing</div></li>
+    </ul>
+  </section>
+
+  <section id="method">
+    <div class="sec-label">05 — Method</div>
+    <h2>How the analysis actually worked</h2>
+    <p>This wasn't a single big report. It was iterative, conversational, and corrected in real time as new data arrived:</p>
+    <div class="method-tags">
+      <span class="method-tag">Natural-language querying</span>
+      <span class="method-tag">Multi-source data fusion</span>
+      <span class="method-tag">Point-in-polygon geospatial filtering</span>
+      <span class="method-tag">Behavioral pattern classification</span>
+      <span class="method-tag">Time-series demand forecasting</span>
+      <span class="method-tag">Role-based activity segmentation</span>
+      <span class="method-tag">Zone-level performance stratification</span>
+      <span class="method-tag">Shift-window analysis</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>This case study is anonymized and redacted for privacy. Specific location names, company identities, employee counts, and financial figures have been generalized to preserve confidentiality while preserving the operational logic.</p>
+  </footer>
+</div>
+
+</body>
+</html>
