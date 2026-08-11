@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process Change Management: The Slack-First Communications Protocol — Steven Needham</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#14171C; --panel:#1B1F27; --panel-line:#282E38;
+  --amber:#E8A33D; --amber-dim:#7A5B2C;
+  --teal:#4FD1C5; --teal-dim:#2C6A64;
+  --text:#EDEAE2; --muted:#8B93A1; --muted-dim:#5B6270;
+
+  --surface-page:var(--ink); --border-default:var(--panel-line);
+  --text-primary:var(--text); --text-muted:var(--muted);
+  --accent-ops:var(--amber); --accent-ops-dim:var(--amber-dim);
+  --accent-sys:var(--teal); --accent-sys-dim:var(--teal-dim);
+
+  --font-display:'Fraunces', serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
+
+  --text-hero:clamp(2rem,4.6vw,3.2rem); --text-h2:clamp(1.5rem,2.8vw,1.9rem);
+  --text-h3:1.15rem; --text-body-lg:1.05rem; --text-body:1rem; --text-body-sm:0.94rem;
+  --text-mono-sm:0.78rem; --text-mono-xs:0.75rem; --text-eyebrow:0.72rem; --text-tag:0.68rem;
+  --leading-body:1.6; --leading-hero:1.15; --tracking-eyebrow:0.14em; --tracking-label:0.1em;
+
+  --space-page-x:clamp(1.5rem,8vw,6rem); --radius-sm:3px; --border-width:1px;
+  --motion-fast:0.2s ease;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-page);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:74ch;margin:0 auto;padding:0 var(--space-page-x)}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--space-page-x);border-bottom:var(--border-width) solid var(--border-default)}
+.nav-name{font-family:var(--font-display);font-weight:500;font-size:1.05rem}
+.nav-links{display:flex;gap:1.8rem;font-family:var(--font-mono);font-size:var(--text-mono-sm)}
+.nav-links a{color:var(--text-muted);text-decoration:none;transition:color var(--motion-fast)}
+.nav-links a:hover{color:var(--text-primary)}
+
+header.hero{padding:5rem var(--space-page-x) 3rem}
+.eyebrow{font-family:var(--font-mono);font-size:var(--text-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--accent-ops);margin-bottom:1.2rem}
+h1{font-family:var(--font-display);font-weight:500;font-size:var(--text-hero);line-height:var(--leading-hero);max-width:16ch;margin:0 0 1.6rem}
+.lede{color:var(--text-muted);font-size:var(--text-body-lg);max-width:60ch;margin:0}
+.hero-meta{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:2.4rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--muted-dim)}
+.hero-meta strong{color:var(--text-muted);display:block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem;font-weight:500}
+
+main{padding:1rem var(--space-page-x) 2rem}
+.intro{max-width:68ch;color:var(--text-muted);font-size:var(--text-body-lg);margin-bottom:3.5rem}
+.intro strong{color:var(--text-primary);font-weight:500}
+
+.track{position:relative;padding-left:2.6rem;max-width:68ch}
+.track::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom, var(--accent-ops-dim), var(--accent-ops))}
+.stop{position:relative;padding-bottom:2.6rem;margin-bottom:2.6rem;border-bottom:var(--border-width) solid var(--border-default)}
+.stop:last-child{border-bottom:none}
+.stop::before{content:"";position:absolute;left:-2.6rem;top:0.35rem;width:9px;height:9px;border-radius:50%;background:var(--accent-ops)}
+.stop-num{font-family:var(--font-mono);font-size:var(--text-tag);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--accent-ops);margin-bottom:0.6rem;display:block}
+.stop h2{font-family:var(--font-display);font-weight:500;font-size:var(--text-h3);margin:0 0 0.9rem}
+.stop p{color:var(--text-muted);margin:0 0 0.9rem;font-size:var(--text-body-sm)}
+.stop ul{margin:0 0 0.9rem;padding-left:1.2rem;color:var(--text-muted);font-size:var(--text-body-sm)}
+.stop li{margin-bottom:0.5rem}
+.stop li strong{color:var(--text-primary);font-weight:500}
+
+table{width:100%;border-collapse:collapse;margin:1.2rem 0 1.8rem;font-size:var(--text-body-sm)}
+th{font-family:var(--font-mono);font-size:var(--text-tag);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--muted);text-align:left;padding:0.6rem 0.8rem;border-bottom:var(--border-width) solid var(--border-default)}
+td{padding:0.75rem 0.8rem;border-bottom:var(--border-width) solid var(--border-default);color:var(--text-muted);vertical-align:top}
+tr td:first-child{color:var(--text-primary);font-weight:500;white-space:nowrap}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:var(--text-tag);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:0.2rem 0.5rem;border-radius:var(--radius-sm);border:var(--border-width) solid}
+.pill.urgent{color:var(--amber);border-color:var(--amber-dim)}
+.pill.transitionary{color:var(--teal);border-color:var(--teal-dim)}
+.pill.standard{color:var(--muted);border-color:var(--border-default)}
+
+blockquote{margin:0;padding:2rem 2.2rem;background:var(--panel);border:var(--border-width) solid var(--border-default);border-radius:var(--radius-sm);font-family:var(--font-display);font-style:italic;font-size:1.1rem;line-height:1.55;color:var(--text-primary)}
+blockquote cite{display:block;margin-top:1rem;font-family:var(--font-mono);font-style:normal;font-size:var(--text-mono-xs);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--muted)}
+
+.context{max-width:68ch;margin-top:1rem;padding:2rem;background:var(--panel);border:var(--border-width) solid var(--border-default);border-radius:var(--radius-sm)}
+.context .eyebrow{color:var(--accent-sys);margin-bottom:0.9rem}
+.context p{color:var(--text-muted);margin:0 0 0.9rem;font-size:var(--text-body-sm)}
+.context p:last-child{margin-bottom:0}
+.context strong{color:var(--text-primary);font-weight:500}
+
+.footer{padding:3.5rem var(--space-page-x) 3rem;border-top:var(--border-width) solid var(--border-default);margin-top:2rem}
+.footer-links{display:flex;flex-wrap:wrap;gap:0.5rem 2rem;font-family:var(--font-mono);font-size:0.85rem;padding:0;margin:0;list-style:none}
+.footer-links a{color:var(--text-muted);text-decoration:none;transition:color var(--motion-fast)}
+.footer-links a:hover{color:var(--accent-ops)}
+.footer-note{font-family:var(--font-mono);font-size:0.7rem;color:var(--muted-dim);margin-top:1.6rem}
+
+@media (max-width:640px){
+  .nav{padding:1.1rem 1.5rem}
+  header.hero{padding:3.5rem 1.5rem 2rem}
+  main{padding:0 1.5rem 2rem}
+  .footer{padding:3rem 1.5rem 2.5rem}
+  .track{padding-left:2rem}
+  .stop::before{left:-2rem}
+  table, thead, tbody, th, td, tr{display:block}
+  th{display:none}
+  td{border-bottom:none;padding:0.3rem 0}
+  tr{padding-bottom:1rem;border-bottom:var(--border-width) solid var(--border-default);margin-bottom:1rem}
+  tr td:first-child{padding-top:0.6rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-name">Steven Needham</span>
+  <div class="nav-links">
+    <a href="https://steveneedham.github.io/portfolio/">Portfolio</a>
+    <a href="https://steveneedham.github.io/portfolio/#about">About</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Process Change Management · Sample Deliverable</div>
+  <h1>The Slack-First Communications Protocol</h1>
+  <p class="lede">A field-tested internal comms framework for 24/7 operations teams — built to close the "shadow text thread" problem and make shift handoffs, maintenance issues, and escalations searchable, triaged, and owned by someone.</p>
+  <div class="hero-meta">
+    <div><strong>Format</strong>Internal SOP / comms policy</div>
+    <div><strong>Applies to</strong>24/7 field &amp; fleet operations teams</div>
+    <div><strong>Track</strong>Mobility Operations &amp; PPP</div>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    In any 24/7 field operation — micro-mobility fleets, campus shuttle programs, transit maintenance crews — the moment communication slips out of a shared system and into a private text thread, visibility goes with it. Shift leads lose the paper trail, off-shift staff get pulled into things that could've waited, and nobody can search back through what actually happened last Tuesday at 2am. <strong>This is the protocol I use to close that gap</strong> — without pretending you can ban text messaging outright, because on day one of a new hire's first shift, you can't.
+  </div>
+
+  <div class="track">
+    <div class="stop">
+      <span class="stop-num">01</span>
+      <h2>The Golden Rule: Slack First</h2>
+      <p>Slack (or your team's equivalent) is the primary operating system for the operation — not a nice-to-have alongside texting. All shift handovers, maintenance issues, and operational updates live here, full stop.</p>
+      <ul>
+        <li><strong>Centralization:</strong> all data must be visible to the entire 24/7 cycle, not just whoever was on shift when it happened.</li>
+        <li><strong>The goal:</strong> move communication out of private text threads and into searchable, triaged channels.</li>
+      </ul>
+    </div>
+
+    <div class="stop">
+      <span class="stop-num">02</span>
+      <h2>Communication Tier System</h2>
+      <p>To protect focus and make sure urgent issues actually get seen, every message gets sorted into one of three tiers before it goes anywhere.</p>
+      <table>
+        <thead>
+          <tr><th>Priority</th><th>Channel</th><th>Definition</th><th>Action required</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill urgent">Urgent</span></td>
+            <td>Text / call</td>
+            <td>Threats to life, property, or immediate operational shutdown.</td>
+            <td>Call or text immediately; document in the primary channel once stabilized.</td>
+          </tr>
+          <tr>
+            <td><span class="pill transitionary">Transitionary</span></td>
+            <td>Text / email</td>
+            <td>New hires, re-hires, or ops partners without active platform access yet.</td>
+            <td>Use for onboarding coordination only; move to the primary channel within 24 hours.</td>
+          </tr>
+          <tr>
+            <td><span class="pill standard">Standard</span></td>
+            <td>Slack</td>
+            <td>Shift reports, "what's up with this?" flags, equipment issues, scheduling.</td>
+            <td>Use the designated forms/threads for that issue type.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stop">
+      <span class="stop-num">03</span>
+      <h2>The Onboarding Exception Protocol</h2>
+      <p>New hires, re-hires, and certain ops partners often don't have platform access on day one — that's fine, but it's an exception with a strict expiration, not a standing workaround.</p>
+      <ul>
+        <li><strong>The 24-hour rule:</strong> texting is permitted for coordination during the first 24 hours of an employee's start or return date, and only that window.</li>
+        <li><strong>Immediate integration:</strong> the shift lead or ops manager is responsible for getting the individual into the workspace and the app installed by the end of their first shift.</li>
+        <li><strong>Reporting via proxy:</strong> if someone without access yet flags a non-emergency issue, a team member with access "proxies" that report into the primary channel so it still gets triaged.</li>
+      </ul>
+    </div>
+
+    <div class="stop">
+      <span class="stop-num">04</span>
+      <h2>Standardized Workflows</h2>
+      <p>Once access is granted, every report follows one of a small set of standard forms — consistency here is what makes the archive searchable later.</p>
+      <ul>
+        <li><strong>Beginning / End of Shift (BOS/EOS):</strong> the backbone of 24/7 continuity — nobody starts a shift blind.</li>
+        <li><strong>"What's up with this?":</strong> the catch-all for anomalies, broken equipment, or process confusion.</li>
+        <li><strong>Triage:</strong> leads react to posts to confirm receipt and route the issue to the right department — visible acknowledgment, not a silent inbox.</li>
+      </ul>
+    </div>
+
+    <div class="stop">
+      <span class="stop-num">05</span>
+      <h2>The Text-Messaging Sunset Strategy</h2>
+      <p>The end goal is to make texting for operational reasons unnecessary — not by banning it, but by fixing whatever keeps forcing people back to it.</p>
+      <ul>
+        <li><strong>Post-emergency audit:</strong> every time a text goes out for an emergency, ask what process failed that made a text necessary.</li>
+        <li><strong>Onboarding audit:</strong> if someone is still texting after 48 hours, that's a signal to run a "tech check" and fix their setup immediately.</li>
+        <li><strong>Notification hardening:</strong> tune notification settings (high-priority tags, escalation pings) so the primary channel carries the same urgency as a text — so there's no reason to default back to it.</li>
+      </ul>
+    </div>
+
+    <div class="stop">
+      <span class="stop-num">06</span>
+      <h2>Summary for the Team</h2>
+      <blockquote>
+        "We respect your time. By moving away from text and into a shared system, the person on shift has the info they need, and the person off shift isn't being bothered. Texting is for fires, property threats, and the first 24 hours of onboarding. Everything else goes through the channel."
+        <cite>— How this gets pitched to the team</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="context">
+    <div class="eyebrow">Why this is here</div>
+    <p>This is a sample of the kind of operational SOP I build as part of a <strong>Mobility Operations Roadmap</strong> or <strong>Compliance &amp; Safety Audit</strong> engagement — the unglamorous documentation that turns "we have the technology and the funding" into an operation that actually runs clean under a city audit or an investor's diligence review.</p>
+    <p>It's written to be dropped into any 24/7 field operation — fleet, transit, campus mobility — and adapted to whatever tools that team already runs on.</p>
+  </div>
+</main>
+
+<div class="footer">
+  <ul class="footer-links">
+    <li><a href="https://steveneedham.github.io/portfolio/">← Back to portfolio</a></li>
+    <li><a href="mailto:sjneedham@icloud.com">sjneedham@icloud.com</a></li>
+  </ul>
+  <div class="footer-note">Mobility Operations &amp; Public-Private Partnership Specialist</div>
+</div>
+
+</body>
+</html>
