@@ -1,0 +1,8 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main heart/cup shape -->
+  <path d="M 20 20 L 18 38 Q 18 48 28 50 Q 38 48 46 38 L 44 20 Q 44 16 40 16 L 24 16 Q 20 16 20 20 Z" fill="none" stroke="#FFC857" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Inner heart indent -->
+  <path d="M 32 26 Q 26 26 23 30 Q 28 28 32 32 Q 36 28 41 30 Q 38 26 32 26" fill="#FFC857" opacity="0.8"/>
+  <!-- Teal accent corner -->
+  <circle cx="48" cy="16" r="3" fill="#4DD0E1"/>
+</svg>
