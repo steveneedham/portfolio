@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_rshqFPsvRswuFx5GRpkifRgNwG8X7nA7fSbLnQPgUT3W', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+    })
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Archive of Steven Needham's Bi-Weekly Dispatch newsletter — field ops, civic systems, and portfolio updates.">
+  <title>Bi-Weekly Dispatch — archive — Steven Needham</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5VW97BT8W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K5VW97BT8W');
+  </script>
+  <style>
+    :root{
+      --ink:#14171C;
+      --panel-line:#282E38;
+      --teal:#4FD1C5;
+      --text:#EDEAE2;
+      --muted:#8B93A1;
+
+      --surface-page:var(--ink);
+      --border-default:var(--panel-line);
+      --text-primary:var(--text);
+      --text-muted:var(--muted);
+      --accent-sys:var(--teal);
+      --accent-sys-dim:#2C6A64;
+
+      --font-display:'Fraunces', serif;
+      --font-body:'Inter', sans-serif;
+      --font-mono:'JetBrains Mono', monospace;
+
+      --text-h2:clamp(1.6rem, 3vw, 2.1rem);
+      --text-body:1rem;
+      --text-mono-sm:0.78rem;
+      --leading-body:1.6;
+
+      --space-page-x:clamp(1.5rem, 8vw, 6rem);
+      --space-nav-x:clamp(1.5rem, 5vw, 4rem);
+
+      --border-width:1px;
+      --motion-fast:0.2s ease;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--surface-page);color:var(--text-primary);
+      font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1.1rem var(--space-nav-x);
+      border-bottom:var(--border-width) solid var(--border-default);
+    }
+    .nav-name{font-family:var(--font-display);font-weight:500;font-size:1.05rem}
+    .nav-links{display:flex;gap:1.8rem;font-family:var(--font-mono);font-size:var(--text-mono-sm)}
+    .nav-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+    .nav-links a:hover{color:var(--text-primary)}
+
+    .archive{max-width:640px;margin:0 auto;padding:5rem var(--space-page-x) 6rem}
+    .archive h1{font-family:var(--font-display);font-weight:500;font-size:var(--text-h2);margin:0 0 2rem}
+    .archive ul{list-style:none;margin:0;padding:0}
+    .archive li{border-bottom:var(--border-width) solid var(--border-default);padding:1.1rem 0}
+    .archive li:first-child{padding-top:0}
+    .archive a.issue{font-family:var(--font-mono);font-size:var(--text-mono-sm);color:var(--accent-sys)}
+    .archive a.issue:hover{color:var(--text-primary)}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-name" href="../index.html">Steven Needham</a>
+  <div class="nav-links">
+    <a href="../index.html">portfolio</a>
+  </div>
+</nav>
+
+<div class="archive">
+  <h1>Bi-Weekly Dispatch — archive</h1>
+  <ul>
+    <li><a class="issue" href="./2026-09-13.html">Issue 2 — September 13, 2026</a></li>
+    <li><a class="issue" href="./2026-08-20.html">Issue 1 — August 20, 2026</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
