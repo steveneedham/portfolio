@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_rshqFPsvRswuFx5GRpkifRgNwG8X7nA7fSbLnQPgUT3W', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+    })
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Field-tested training modules for micromobility field operations: equity-first leadership, GBFS data, 311 systems, ops dashboards, incident response, and case-manager access programs.">
+  <title>Training modules — Steven Needham</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5VW97BT8W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K5VW97BT8W');
+  </script>
+  <style>
+    :root{
+      --ink:#14171C;
+      --panel:#1B1F27;
+      --panel-line:#282E38;
+      --amber:#E8A33D;
+      --amber-dim:#7A5B2C;
+      --teal:#4FD1C5;
+      --teal-dim:#2C6A64;
+      --text:#EDEAE2;
+      --muted:#8B93A1;
+      --muted-dim:#5B6270;
+
+      --surface-page:var(--ink);
+      --border-default:var(--panel-line);
+      --text-primary:var(--text);
+      --text-muted:var(--muted);
+      --text-muted-dim:var(--muted-dim);
+      --accent-ops:var(--amber);
+      --accent-ops-dim:var(--amber-dim);
+      --accent-sys:var(--teal);
+      --accent-sys-dim:var(--teal-dim);
+
+      --font-display:'Fraunces', serif;
+      --font-body:'Inter', sans-serif;
+      --font-mono:'JetBrains Mono', monospace;
+
+      --text-h2:clamp(1.6rem, 3vw, 2.1rem);
+      --text-body:1rem;
+      --text-body-sm:0.94rem;
+      --text-mono-sm:0.78rem;
+      --text-mono-xs:0.75rem;
+      --text-eyebrow:0.72rem;
+      --text-tag:0.68rem;
+
+      --leading-body:1.6;
+      --leading-h2:1.25;
+
+      --tracking-eyebrow:0.14em;
+      --tracking-label:0.1em;
+
+      --weight-medium:500;
+
+      --space-page-x:clamp(1.5rem, 8vw, 6rem);
+      --space-nav-x:clamp(1.5rem, 5vw, 4rem);
+
+      --radius-sm:3px;
+      --border-width:1px;
+
+      --motion-fast:0.2s ease;
+      --blur-nav:10px;
+
+      --media-aspect-wide:16/9;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--surface-page);color:var(--text-primary);
+      font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* ---------- Nav ---------- */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1.1rem var(--space-nav-x);
+      background:rgba(20,23,28,0.72);
+      backdrop-filter:blur(var(--blur-nav));
+      -webkit-backdrop-filter:blur(var(--blur-nav));
+      border-bottom:var(--border-width) solid var(--border-default);
+    }
+    .nav-name{font-family:var(--font-display);font-weight:500;font-size:1.05rem}
+    .nav-links{display:flex;gap:1.8rem;font-family:var(--font-mono);font-size:var(--text-mono-sm)}
+    .nav-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+    .nav-links a:hover{color:var(--text-primary)}
+
+    /* ---------- Intro ---------- */
+    .modules-intro{padding:6rem var(--space-page-x) 2rem;max-width:68ch}
+    .eyebrow{
+      font-family:var(--font-mono);font-size:var(--text-eyebrow);
+      letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;
+      color:var(--text-muted);margin-bottom:0.9rem;
+    }
+    .modules-intro h1{
+      font-family:var(--font-display);font-weight:500;font-size:var(--text-h2);
+      line-height:var(--leading-h2);margin:0;
+    }
+    .modules-intro p{color:var(--text-muted);margin:1.4rem 0 0;max-width:60ch}
+
+    /* ---------- Module grid & card ---------- */
+    .module-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:3rem 2.4rem;padding:2rem var(--space-page-x) 5rem;
+    }
+    .module-card{display:flex;flex-direction:column;gap:1.1rem}
+    .module-cover{
+      position:relative;aspect-ratio:var(--media-aspect-wide);
+      border-radius:var(--radius-sm);overflow:hidden;background:var(--panel);
+    }
+    .module-cover-media{
+      width:100%;height:100%;
+      background:var(--panel) var(--module-photo-pos,center) / cover no-repeat;
+      background-image:var(--module-photo,none);
+    }
+    .module-cover-scrim{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(20,23,28,0.12) 0%,rgba(20,23,28,0.5) 55%,rgba(20,23,28,0.95) 100%);
+    }
+    .module-icon-badge{
+      position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:8px;
+      background-size:cover;
+    }
+    .module-cover-meta{position:absolute;left:18px;right:18px;bottom:16px}
+    .module-track-label{
+      font-family:var(--font-mono);font-size:var(--text-tag);letter-spacing:var(--tracking-eyebrow);
+      text-transform:uppercase;margin-bottom:0.4rem;
+    }
+    .module-card[data-track="ops"] .module-track-label{color:var(--accent-ops)}
+    .module-card[data-track="sys"] .module-track-label{color:var(--accent-sys)}
+    .module-title{
+      font-family:var(--font-display);font-weight:var(--weight-medium);
+      font-size:1.5rem;line-height:1.15;color:var(--text-primary);margin:0;
+    }
+    .module-body{color:var(--text-muted);font-size:var(--text-body-sm);margin:0}
+    .module-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .tag{
+      font-family:var(--font-mono);font-size:var(--text-tag);
+      letter-spacing:var(--tracking-label);text-transform:uppercase;
+      color:var(--text-muted);border:var(--border-width) solid var(--border-default);
+      border-radius:var(--radius-sm);padding:0.25rem 0.5rem;
+    }
+    .module-pricing{
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      margin-top:0.2rem;padding-top:1rem;border-top:var(--border-width) solid var(--border-default);
+    }
+    .module-price{font-family:var(--font-mono);font-size:var(--text-mono-xs);color:var(--text-muted)}
+    .module-cta{
+      display:inline-flex;align-items:center;gap:0.4rem;
+      font-family:var(--font-mono);font-size:var(--text-mono-sm);font-weight:var(--weight-medium);
+      text-decoration:none;border-bottom:1px solid;padding-bottom:2px;
+      transition:opacity var(--motion-fast);
+    }
+    .module-cta:hover{opacity:0.8}
+    .module-card[data-track="ops"] .module-cta{color:var(--accent-ops);border-color:var(--accent-ops-dim)}
+    .module-card[data-track="sys"] .module-cta{color:var(--accent-sys);border-color:var(--accent-sys-dim)}
+
+    /* ---------- Icon gallery ---------- */
+    .icon-gallery{display:flex;gap:1.6rem;flex-wrap:wrap;padding:0 var(--space-page-x) 5rem}
+    .icon-gallery-tile{
+      display:flex;flex-direction:column;align-items:center;gap:0.6rem;width:132px;
+      background:var(--panel);border:var(--border-width) solid var(--border-default);
+      border-radius:6px;padding:1.2rem 1.4rem;
+    }
+    .icon-gallery-glyph{width:64px;height:64px;background-size:cover}
+    .icon-gallery-label{
+      font-family:var(--font-mono);font-size:var(--text-tag);color:var(--text-muted);text-align:center;
+    }
+
+    /* ---------- Crawl strip ---------- */
+    .crawl-strip{
+      display:flex;align-items:center;min-height:1.6em;
+      padding:0.7rem var(--space-nav-x);
+      font-family:var(--font-mono);font-size:var(--text-mono-sm);
+      border-bottom:var(--border-width) solid var(--border-default);
+    }
+    .crawl-fact{
+      display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:0.6rem;
+      color:var(--text-muted);opacity:0;transition:opacity 0.25s ease;
+    }
+    .crawl-fact.is-visible{opacity:1}
+    .crawl-dot{font-size:0.9em}
+    .crawl-label{
+      display:inline-flex;align-items:center;gap:0.3rem;
+      text-transform:uppercase;letter-spacing:var(--tracking-label);font-size:var(--text-tag);
+    }
+    .crawl-label img{width:16px;height:16px}
+    .crawl-source{color:var(--text-muted-dim)}
+    .crawl-thinking{display:inline-flex;align-items:center;gap:0.6rem;color:var(--text-muted)}
+    .crawl-thinking[hidden]{display:none}
+    .crawl-spinner{position:relative;width:14px;height:14px;flex:none}
+    .crawl-spinner::before{
+      content:"";position:absolute;inset:0;border-radius:50%;
+      border:1.5px solid var(--accent-sys);border-top-color:transparent;
+      animation:crawl-spin 0.9s linear infinite;
+    }
+    .crawl-dots{display:inline-flex;gap:3px}
+    .crawl-dots span{
+      width:5px;height:5px;border-radius:50%;background:var(--accent-sys);
+      animation:crawl-bounce 1.1s ease-in-out infinite;
+    }
+    .crawl-dots span:nth-child(2){animation-delay:0.15s}
+    .crawl-dots span:nth-child(3){animation-delay:0.3s}
+    .crawl-thinking-label{
+      text-transform:uppercase;letter-spacing:var(--tracking-label);font-size:var(--text-tag);
+    }
+    @keyframes crawl-spin{to{transform:rotate(360deg)}}
+    @keyframes crawl-bounce{0%,80%,100%{transform:scale(0.6);opacity:0.35}40%{transform:scale(1);opacity:1}}
+
+    /* ---------- Closing ---------- */
+    .closing{padding:1rem var(--space-page-x) 6rem}
+    .back{
+      display:inline-block;color:var(--accent-sys);
+      font-family:var(--font-mono);font-size:var(--text-mono-sm);
+      border-bottom:1px solid var(--accent-sys-dim);
+    }
+    .back:hover{color:var(--text-primary);border-color:var(--text-primary)}
+
+    @media(max-width:760px){
+      .module-grid,.icon-gallery{padding-inline:var(--space-nav-x)}
+      .modules-intro,.closing{padding-inline:var(--space-nav-x)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .crawl-spinner::before,.crawl-dots span{animation:none}
+      .crawl-fact{transition:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-name" href="../index.html">Steven Needham</a>
+  <div class="nav-links">
+    <a href="#modules">modules</a>
+    <a href="../index.html">portfolio</a>
+  </div>
+</nav>
+
+<div id="crawl-strip" class="crawl-strip">
+  <span id="crawl-fact" class="crawl-fact">
+    <span id="crawl-dot" class="crawl-dot">●</span>
+    <span id="crawl-label" class="crawl-label"><span id="crawl-label-text"></span><img src="../assets/icons/crawl-movement.svg" alt=""></span>
+    <span id="crawl-text"></span>
+    <span id="crawl-source" class="crawl-source"></span>
+  </span>
+  <span id="crawl-thinking" class="crawl-thinking" hidden>
+    <span class="crawl-spinner"></span>
+    <span class="crawl-dots"><span></span><span></span><span></span></span>
+    <span class="crawl-thinking-label">Pulling next insight…</span>
+  </span>
+</div>
+
+<div class="modules-intro">
+  <div class="eyebrow">Training modules</div>
+  <h1>Field-tested playbooks for the people who run the systems.</h1>
+  <p>Six short courses built from ten-plus years of daily fleet operations — leadership, civic systems, and the dashboards that keep both honest.</p>
+</div>
+
+<div id="modules" class="module-grid">
+
+  <div class="module-card" data-track="ops">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 15%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/module-equity-leaders.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Ops &amp; leadership</div>
+        <h3 class="module-title">Equity-First Micromobility Field Leaders</h3>
+      </div>
+    </div>
+    <p class="module-body">A field-management curriculum for supervisors running mixed fleets in underserved neighborhoods — staffing models, equity-zone service levels, and de-escalation practices drawn from ten-plus years of daily operations.</p>
+    <div class="module-tags">
+      <span class="tag">Field ops</span><span class="tag">Equity zones</span><span class="tag">Team leadership</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$79 · Self-paced · 6 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+  <div class="module-card" data-track="sys">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 35%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/module-gbfs-data.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Systems &amp; tools</div>
+        <h3 class="module-title">Understanding GBFS Data</h3>
+      </div>
+    </div>
+    <p class="module-body">A practical walkthrough of the General Bikeshare Feed Specification — reading live vehicle and station feeds, spotting chronic underperformers across months of ride data, and building your first automated pull.</p>
+    <div class="module-tags">
+      <span class="tag">GBFS</span><span class="tag">Data pipelines</span><span class="tag">Fleet analytics</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$59 · Self-paced · 5 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+  <div class="module-card" data-track="ops">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 55%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/module-311.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Ops &amp; leadership</div>
+        <h3 class="module-title">The 411 on 311s</h3>
+      </div>
+    </div>
+    <p class="module-body">How micromobility field teams work city 311 systems — logging ADA-blocking cases correctly, tracking vendor response times, and closing the loop before a case goes public.</p>
+    <div class="module-tags">
+      <span class="tag">Civic ops</span><span class="tag">311 systems</span><span class="tag">Case tracking</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$49 · Self-paced · 4 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+  <div class="module-card" data-track="sys">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 40%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/module-ops-dashboards.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Systems &amp; tools</div>
+        <h3 class="module-title">Building Ops Dashboards That Don't Lie</h3>
+      </div>
+    </div>
+    <p class="module-body">Turning raw fleet exports into a morning dashboard your team trusts — live coverage numbers, anomaly flags, and the forecast logic behind twice-daily rebalance calls.</p>
+    <div class="module-tags">
+      <span class="tag">Dashboards</span><span class="tag">Forecasting</span><span class="tag">Metabase</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$69 · Self-paced · 6 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+  <div class="module-card" data-track="ops">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 35%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/incident.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Ops &amp; leadership</div>
+        <h3 class="module-title">When Things Don't Go As Planned</h3>
+      </div>
+    </div>
+    <p class="module-body">Field incident response, crisis comms, and decision-making under pressure — how to move fast when a vehicle fails, a rider is injured, or the fleet has a bad day.</p>
+    <div class="module-tags">
+      <span class="tag">Incident response</span><span class="tag">Crisis comms</span><span class="tag">Field decisions</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$79 · Self-paced · 7 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+  <div class="module-card" data-track="ops">
+    <div class="module-cover">
+      <div class="module-cover-media" style="--module-photo-pos:center 45%"></div>
+      <div class="module-cover-scrim"></div>
+      <div class="module-icon-badge" style="background-image:url(../assets/icons/case-workers.svg)" aria-hidden="true"></div>
+      <div class="module-cover-meta">
+        <div class="module-track-label">Ops &amp; leadership</div>
+        <h3 class="module-title">Case Managers: Spin &amp; Veo Access Sign-Up</h3>
+      </div>
+    </div>
+    <p class="module-body">How case workers and social workers enroll clients into low-income micromobility access programs — eligibility verification, operator workflows, and closing the mobility equity gap.</p>
+    <div class="module-tags">
+      <span class="tag">Access programs</span><span class="tag">Case management</span><span class="tag">Social equity</span>
+    </div>
+    <div class="module-pricing">
+      <span class="module-price">$59 · Self-paced · 5 lessons</span>
+      <a class="module-cta" href="#">Enroll now →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="icon-gallery" aria-label="Module icons">
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/module-equity-leaders.svg)"></div>
+    <span class="icon-gallery-label">Equity-First Micromobility Field Leaders</span>
+  </div>
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/module-gbfs-data.svg)"></div>
+    <span class="icon-gallery-label">Understanding GBFS Data</span>
+  </div>
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/module-311.svg)"></div>
+    <span class="icon-gallery-label">The 411 on 311s</span>
+  </div>
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/module-ops-dashboards.svg)"></div>
+    <span class="icon-gallery-label">Building Ops Dashboards That Don't Lie</span>
+  </div>
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/incident.svg)"></div>
+    <span class="icon-gallery-label">When Things Don't Go As Planned</span>
+  </div>
+  <div class="icon-gallery-tile">
+    <div class="icon-gallery-glyph" aria-hidden="true" style="background-image:url(../assets/icons/case-workers.svg)"></div>
+    <span class="icon-gallery-label">Case Managers: Spin &amp; Veo Access Sign-Up</span>
+  </div>
+</div>
+
+<section class="closing">
+  <a class="back" href="../index.html">Return to portfolio →</a>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var FACTS = [
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Shared micromobility crossed 237 million trips across North America in 2025 — the third record year running.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus's own number: 812,577 shared bike and scooter trips in 2025 — Columbus's part of that continent-wide 237M.", s: "City of Columbus, Bike Plus 2025 Annual Report" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "About 62% of 2025's shared trips were on a bike, 38% on a scooter — riders still reach for pedals first.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Roughly 70% of shared micromobility riders say they used it to connect to another transit trip in 2025. It's feeder infrastructure, not a novelty.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "E-bikes make up about 45% of the shared fleet but pull in 51% of the rides — the more capable vehicle works harder per unit.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "North American systems logged shared trips in 400-plus cities in 2025, up from a handful two decades ago.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus is one of those 400-plus cities — and its ridership actually dipped 17% from 977,000 trips in 2023 to 812,577 in 2025, against a citywide +5%/year target.", s: "City of Columbus, Bike Plus 2025 Annual Report" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "The average shared micromobility trip runs about 1.5 miles — just past the point where walking stops being the faster option.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Industry estimates put 2025's CO2 offset from shared micromobility above 100 million pounds.", s: "NABSA, 2025 State of the Industry" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus's local offset story: 15.9 miles of new or under-construction bike lanes and paths in Bike Plus's first year alone.", s: "City of Columbus, Bike Plus 2025 Annual Report" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Protecting East Broad Street cut excessive speeding (55mph+ in a 35) by 89% and total crashes by 50% — with zero reported bike or scooter crashes May-to-November.", s: "City of Columbus, Bike Plus 2025 Annual Report" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Fatal and serious-injury crashes involving people biking, scooting, or rolling in Columbus rose from 72 (2018-22) to 89 (2020-24) even as the network grew — the city's target is zero by 2035.", s: "City of Columbus, Bike Plus 2025 Annual Report" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "A broken e-bike or scooter doesn't make any money and still runs up a storage bill.", s: "Field observation" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "We're in the business of operating vehicles, not storing vehicles.", s: "Field observation" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "The fastest way to lose a vehicle is to leave it fully charged somewhere quiet for three days.", s: "Field observation" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Every field team has one intersection that eats more phantom 311 cases than the rest of the city combined.", s: "Field observation" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "A rebalancing plan is really just a bet on where people will want a vehicle in six hours.", s: "Field observation" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Veo's GBFS feed reports no battery percentage; a public tracker uses shrinking published range as the nearest available proxy for charge level.", s: "Columbus Micromobility — Observer View" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Spin reassigns every vehicle's ID on each data pull, so only Veo's individual scooters can be tracked snapshot to snapshot.", s: "Columbus Micromobility — Observer View" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus grades CBD scooter distribution on a 30% ceiling — one operator holding more than 30% of downtown's active fleet reads red.", s: "Columbus Micromobility — Observer View" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Opportunity-zone service has a floor, not a ceiling: under 4.5% of a fleet parked there reads red, 5%-plus reads green.", s: "Columbus Micromobility — Observer View" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "A cross-vendor 'pile-up' flag needs four-plus vehicles from more than one operator within about 20 metres — one brand alone doesn't trigger it.", s: "Columbus Micromobility — Observer View" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus grades Spin and Veo against 28 standards across five performance areas — response time is a monthly average, so one slow pickup isn't a contract violation on its own.", s: "311 Field Intelligence" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "A raw 311 export can log a request, not prove an SLA miss — that takes vendor identity, timestamps, and the city's own inclusion decisions layered on top.", s: "311 Field Intelligence" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Veo's Columbus launch moved past 200,000 rides in its first four months — more than 75% on seated scooters and two-seat e-bikes.", s: "WOSU / Veo Columbus launch" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Six months and 20,000-plus rides of fleet data is enough to name the chronic underperforming vehicles and the neighborhoods actually driving demand.", s: "Portfolio — vehicle performance analytics" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "A live multi-fleet dashboard can watch two competing operators at once with zero cooperation required — just their public GBFS feeds.", s: "Portfolio — live multi-fleet dashboard" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "'24/7 operations' mostly means someone's shift always starts mid-conversation — the whole reason a Slack-first handoff protocol exists.", s: "Portfolio — Slack-First Communications Protocol" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "One knowledge-gap audit of a single ops team turned up a dozen undocumented blind spots — SOPs everyone assumed already existed.", s: "Portfolio — knowledge-gap audit" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Rule of thumb from the field: if something happens twice a day, it's probably already automated.", s: "github.com/steveneedham bio" },
+    { t: 'OPS', c: 'var(--accent-ops)', x: "Columbus PantryMap tracks about 90 mutual-aid food sites the same way a fleet dashboard tracks scooters — location, category, one live filter.", s: "Portfolio — Columbus PantryMap" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "Columbus's CBD distribution rule reads red above 30% of a fleet, yellow 27-30%, green under 27% — a hard ceiling, not a suggestion.", s: "Columbus Micromobility — Observer View" },
+    { t: 'SYS', c: 'var(--accent-sys)', x: "The same dashboard's Veo movement layer can only be trusted for Veo — Spin's vehicle IDs reset on every pull, so Spin has no cross-snapshot movement trend at all.", s: "Columbus Micromobility — Observer View" }
+  ];
+  var PACE = 5600, GAP = 700;
+  var state = { idx: 0 };
+  try {
+    var saved = JSON.parse(localStorage.getItem('trainingCrawlState') || 'null');
+    if (saved && typeof saved.idx === 'number') state.idx = saved.idx % FACTS.length;
+  } catch (e) {}
+
+  var factEl = document.getElementById('crawl-fact');
+  var thinkingEl = document.getElementById('crawl-thinking');
+  var dotEl = document.getElementById('crawl-dot');
+  var labelEl = document.getElementById('crawl-label-text');
+  var textEl = document.getElementById('crawl-text');
+  var sourceEl = document.getElementById('crawl-source');
+
+  function paint() {
+    var f = FACTS[state.idx];
+    dotEl.style.color = f.c;
+    labelEl.style.color = f.c;
+    labelEl.textContent = f.t;
+    textEl.textContent = f.x;
+    sourceEl.textContent = '— ' + f.s;
+  }
+
+  function tick() {
+    factEl.classList.remove('is-visible');
+    thinkingEl.hidden = false;
+    setTimeout(function () {
+      state.idx = (state.idx + 1) % FACTS.length;
+      try { localStorage.setItem('trainingCrawlState', JSON.stringify({ idx: state.idx })); } catch (e) {}
+      paint();
+      thinkingEl.hidden = true;
+      factEl.classList.add('is-visible');
+    }, GAP);
+  }
+
+  paint();
+  factEl.classList.add('is-visible');
+  setInterval(tick, PACE);
+}());
+</script>
+
+</body>
+</html>

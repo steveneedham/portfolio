@@ -1,0 +1,12 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <g class="crawl-line">
+    <line x1="12" y1="20" x2="52" y2="20" stroke="#8B93A1" stroke-width="1.5" stroke-linecap="round"></line>
+  </g>
+  <g class="crawl-line" style="animation-delay: 0.2s;">
+    <line x1="12" y1="32" x2="52" y2="32" stroke="#8B93A1" stroke-width="1.5" stroke-linecap="round"></line>
+  </g>
+  <g class="crawl-accent" style="animation-delay: 0.4s;">
+    <line x1="12" y1="44" x2="52" y2="44" stroke="#4FD1C5" stroke-width="1.5" stroke-linecap="round"></line>
+  </g>
+  <path d="M 54 44 L 58 44 M 56 42 L 58 44 L 56 46" stroke="#4FD1C5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+</svg>
