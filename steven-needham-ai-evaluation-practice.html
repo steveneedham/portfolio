@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steven Needham — AI Evaluation Practice</title>
+<meta name="description" content="A short companion note on Steven Needham's hands-on practice evaluating AI output — Google AI Essentials certified, Google AI Professional Certificate underway, daily working practice across Claude, ChatGPT, and Gemini.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjQgNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxNDE3MUMiPjwvcmVjdD4KICA8bGluZSB4MT0iMTAiIHkxPSIzMiIgeDI9IjU0IiB5Mj0iMzIiIHN0cm9rZT0iIzVCNjI3MCIgc3Ryb2tlLXdpZHRoPSIzIj48L2xpbmU+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMTQiIGZpbGw9IiMxNDE3MUMiIHN0cm9rZT0iIzRGRDFDNSIgc3Ryb2tlLXdpZHRoPSI0Ij48L2NpcmNsZT4KICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjMyIiByPSI1IiBmaWxsPSIjRThBMzNEIj48L2NpcmNsZT4KICA8Y2lyY2xlIGN4PSI1NCIgY3k9IjMyIiByPSI1IiBmaWxsPSIjNEZEMUM1Ij48L2NpcmNsZT4KPC9zdmc+">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #14171C;
+  --panel: #1B1F27;
+  --panel-line: #282E38;
+  --amber: #E8A33D;
+  --amber-dim: #7A5B2C;
+  --teal: #4FD1C5;
+  --teal-dim: #2C6A64;
+  --text: #EDEAE2;
+  --muted: #8B93A1;
+  --muted-dim: #5B6270;
+
+  --surface-page: var(--ink);
+  --border-default: var(--panel-line);
+  --text-primary: var(--text);
+  --text-muted: var(--muted);
+  --accent-ops: var(--amber);
+  --accent-sys: var(--teal);
+  --focus-ring: var(--amber);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-hero: clamp(1.9rem, 4.6vw, 3.2rem);
+  --text-h2: clamp(1.6rem, 3vw, 2.1rem);
+  --text-h2-footer: clamp(1.5rem, 3vw, 2rem);
+  --text-nav: 1.05rem;
+  --text-body-lg: 1.05rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.94rem;
+  --text-mono-md: 0.85rem;
+  --text-mono-sm: 0.78rem;
+  --text-mono-xs: 0.75rem;
+  --text-eyebrow: 0.72rem;
+  --text-foot: 0.7rem;
+
+  --leading-body: 1.6;
+  --leading-hero: 1.18;
+  --leading-h2: 1.25;
+  --tracking-eyebrow: 0.14em;
+  --tracking-label: 0.1em;
+
+  --space-page-x: clamp(1.5rem, 8vw, 6rem);
+  --space-nav-x: clamp(1.5rem, 5vw, 4rem);
+  --space-hero-top: 6rem;
+  --space-hero-bottom: 2.5rem;
+  --radius-sm: 3px;
+  --border-width: 1px;
+  --motion-fast: 0.2s ease;
+  --blur-nav: 10px;
+  --space-document-y: clamp(2rem, 6vw, 4.5rem);
+  --z-nav: 50;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface-page);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:4px}
+
+.nav{position:sticky;top:0;z-index:var(--z-nav);display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--space-nav-x);background:rgba(20,23,28,0.72);backdrop-filter:blur(var(--blur-nav));-webkit-backdrop-filter:blur(var(--blur-nav));border-bottom:var(--border-width) solid var(--border-default)}
+.nav-name{font-family:var(--font-display);font-weight:500;font-size:var(--text-nav)}
+.nav-links{display:flex;gap:1.8rem;font-family:var(--font-mono);font-size:var(--text-mono-sm)}
+.nav-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+.nav-links a:hover{color:var(--text-primary)}
+
+.hero{padding:var(--space-hero-top) var(--space-page-x) var(--space-hero-bottom);border-bottom:var(--border-width) solid var(--border-default)}
+.hero-eyebrow{font-family:var(--font-mono);font-size:var(--text-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--text-muted);margin-bottom:1.4rem}
+.hero h1{font-family:var(--font-display);font-weight:500;font-size:var(--text-hero);line-height:var(--leading-hero);max-width:22ch;margin:0}
+.hero h1 em{font-style:italic;color:var(--accent-sys)}
+.hero p{margin-top:1.6rem;max-width:60ch;color:var(--text-muted);font-size:var(--text-body-lg)}
+.hero-meta{margin-top:2.2rem;display:flex;gap:2.5rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.78rem;color:var(--muted-dim)}
+.hero-meta strong{color:var(--text-muted);display:block;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem;font-weight:500}
+
+.about{padding:var(--space-document-y) var(--space-page-x) 0;max-width:68ch}
+.eyebrow{font-family:var(--font-mono);font-size:var(--text-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--text-muted);margin-bottom:0.9rem}
+.about h2{font-family:var(--font-display);font-weight:500;font-size:var(--text-h2);line-height:var(--leading-h2);margin:0}
+.about p{color:var(--text-muted);margin:1.4rem 0 0}
+.about p + p{margin-top:1.1rem}
+.about strong{color:var(--text-primary);font-weight:500}
+
+.doc-wide{padding:var(--space-document-y) var(--space-page-x) 0;max-width:72rem}
+.doc-wide h2{font-family:var(--font-display);font-weight:500;font-size:var(--text-h2);line-height:var(--leading-h2);margin:0 0 1.8rem}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:0.5rem}
+.card{padding:1.4rem 1.5rem;background:var(--panel);border:var(--border-width) solid var(--border-default);border-radius:var(--radius-sm);border-left:3px solid var(--accent-sys)}
+.card-num{font-family:var(--font-mono);font-size:var(--text-mono-sm);color:var(--accent-sys);letter-spacing:var(--tracking-label);display:block;margin-bottom:0.7rem}
+.card p{color:var(--text-muted);font-size:var(--text-body-sm);margin:0}
+
+.footer{padding:3.5rem var(--space-page-x) 2rem;border-top:var(--border-width) solid var(--border-default);margin-top:2rem}
+.footer h2{font-family:var(--font-display);font-weight:500;font-size:var(--text-h2-footer);margin:0 0 1.8rem;max-width:24ch}
+.footer-links{display:flex;flex-wrap:wrap;gap:0.5rem 2rem;font-family:var(--font-mono);font-size:var(--text-mono-md);padding:0;margin:0 0 1.2rem;list-style:none}
+.footer-links a{color:var(--text-muted);transition:color var(--motion-fast)}
+.footer-links a:hover{color:var(--accent-sys)}
+.footer-note{font-family:var(--font-mono);font-size:var(--text-foot);color:var(--muted-dim)}
+.social-row{padding:0 var(--space-page-x) 3rem;display:flex;gap:0.7rem;align-items:center;flex-wrap:wrap}
+.social-row a{display:block;line-height:0;transition:opacity var(--motion-fast)}
+.social-row a:hover{opacity:0.8}
+.social-row img{width:30px;height:30px;border-radius:6px}
+
+@media (max-width:760px){.card-grid{grid-template-columns:1fr}.nav-links{gap:1.1rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-name">Steven Needham</div>
+  <div class="nav-links">
+    <a href="https://steveneedham.github.io">Portfolio</a>
+    <a href="steven-needham-executive-case-study.html">Case Study</a>
+    <a href="https://linkedin.com/in/steveneedham">LinkedIn</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">AI Evaluation Practice</div>
+  <h1>I Don't Just Prompt AI — I <em>Audit</em> It</h1>
+  <p>Google AI Essentials certified, Google AI Professional Certificate underway, with a daily working practice across Claude, ChatGPT, and Gemini. Prompting is the easy part. The job is catching the point where a confident answer and a correct one stop being the same thing.</p>
+  <div class="hero-meta">
+    <div><strong>Candidate</strong>Steven Needham</div>
+    <div><strong>Certification</strong>Google AI Essentials · Professional Cert. in progress</div>
+    <div><strong>Tools</strong>Claude · ChatGPT · Gemini</div>
+  </div>
+</header>
+
+<section class="about">
+  <div class="eyebrow">The Practice</div>
+  <h2>Verification, Not Just Prompting</h2>
+  <p>Years of enterprise IT audit and risk consulting teach one habit above everything else: nothing gets accepted on the strength of how confident it sounds. A control gets tested against the actual policy. A finding gets checked against the actual evidence. That habit transfers directly to working with AI — a fluent answer isn't the same as a correct one, and the gap between them is exactly what needs catching before it reaches a workflow, a dashboard, or a client.</p>
+  <p>In practice, that means <strong>rewriting a prompt</strong> when the first answer is confidently wrong, <strong>cross-checking a model's output</strong> against source data before it goes into a report, and treating AI reasoning the same way an audit treats a client's claim — as something to verify, not a conclusion to accept.</p>
+</section>
+
+<section class="doc-wide">
+  <div class="eyebrow">Where It Shows Up</div>
+  <h2>Applied, Not Theoretical</h2>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-num">01</span>
+      <p>Cross-checking AI-drafted analysis against source data — GBFS feeds, Metabase queries — before it reaches a dashboard.</p>
+    </div>
+    <div class="card">
+      <span class="card-num">02</span>
+      <p>Rewriting a prompt when the first output sounds right but doesn't hold up against the actual workflow.</p>
+    </div>
+    <div class="card">
+      <span class="card-num">03</span>
+      <p>Applying the same audit-grade skepticism to AI reasoning that a decade of compliance work applied to business claims.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <h2>Let's talk about the role.</h2>
+  <ul class="footer-links">
+    <li><a href="mailto:sjneedham@icloud.com">sjneedham@icloud.com</a></li>
+    <li><a href="steven-needham-executive-case-study.html">Full Case Study</a></li>
+    <li><a href="https://linkedin.com/in/steveneedham">LinkedIn</a></li>
+    <li><a href="https://github.com/steveneedham">GitHub</a></li>
+  </ul>
+  <div class="footer-note">Steven Needham — 614 Guardian Project — Columbus, Ohio</div>
+</footer>
+<div class="social-row">
+  <a href="https://linkedin.com/in/steveneedham" aria-label="LinkedIn"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjI4IiBmaWxsPSIjMTQxNzFDIj48L3JlY3Q+CiAgPHRleHQgeD0iMTAwIiB5PSIxMjgiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM0RkQxQzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmluPC90ZXh0Pgo8L3N2Zz4=" alt="LinkedIn"></a>
+  <a href="https://github.com/steveneedham" aria-label="GitHub"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjI4IiBmaWxsPSIjMTQxNzFDIj48L3JlY3Q+CiAgPHBhdGggZD0iTTEwMCA0NSBDIDcwIDQ1LCA0OCA2NywgNDggOTcgQyA0OCAxMjEsIDYzIDE0MSwgODQgMTQ4JiN4QTsgICAgICAgICAgIEMgODcgMTQ5LCA4OCAxNDcsIDg4IDE0NSBMIDg4IDEzMyYjeEE7ICAgICAgICAgICBDIDcxIDEzNywgNjcgMTI1LCA2NyAxMjUgQyA2NCAxMTgsIDYwIDExNiwgNjAgMTE2JiN4QTsgICAgICAgICAgIEMgNTQgMTEyLCA2MSAxMTIsIDYxIDExMiBDIDY4IDExMywgNzIgMTIwLCA3MiAxMjAmI3hBOyAgICAgICAgICAgQyA3OCAxMzAsIDg4IDEyNywgOTIgMTI1IEMgOTMgMTIwLCA5NSAxMTcsIDk3IDExNSYjeEE7ICAgICAgICAgICBDIDgyIDExMywgNjYgMTA3LCA2NiA4MiBDIDY2IDc1LCA2OCA2OSwgNzMgNjUmI3hBOyAgICAgICAgICAgQyA3MiA2MiwgNzAgNTQsIDc0IDQ0IEMgNzQgNDQsIDgxIDQyLCA4OCA1MSYjeEE7ICAgICAgICAgICBDIDkyIDUwLCAxMDggNTAsIDExMiA1MSBDIDExOSA0MiwgMTI2IDQ0LCAxMjYgNDQmI3hBOyAgICAgICAgICAgQyAxMzAgNTQsIDEyOCA2MiwgMTI3IDY1IEMgMTMyIDY5LCAxMzQgNzUsIDEzNCA4MiYjeEE7ICAgICAgICAgICBDIDEzNCAxMDcsIDExOCAxMTMsIDEwMyAxMTUgQyAxMDYgMTE4LCAxMDggMTIyLCAxMDggMTI5JiN4QTsgICAgICAgICAgIEwgMTA4IDE0NSBDIDEwOCAxNDcsIDEwOSAxNDksIDExMiAxNDgmI3hBOyAgICAgICAgICAgQyAxMzMgMTQxLCAxNDggMTIxLCAxNDggOTcgQyAxNDggNjcsIDEyNiA0NSwgMTAwIDQ1IFoiIGZpbGw9IiNFREVBRTIiPjwvcGF0aD4KPC9zdmc+" alt="GitHub"></a>
+</div>
+
+</body>
+</html>
